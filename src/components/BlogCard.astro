@@ -1,0 +1,85 @@
+---
+import { Icon } from 'astro-icon';
+export interface Props {
+	title: string;
+	description: string;
+}
+
+const { title, description } = Astro.props;
+---
+<div class="blogContainer">
+	<div class="blogTitle">
+		{title}
+	</div>
+	<div class="blogDesc">
+		{description}
+	</div>
+	<div class="linkContainer">
+		<div class="blogLink">
+			Read More <Icon pack="ph" name="arrow-right" class="linkIcon" />
+		</div>
+	</div>
+</div>
+<style>
+	/* Mobile sizing for .blogContainer */
+	.blogContainer {
+		width: 800px;
+		height: auto;
+		display: flex;
+		align-items: left;
+		flex-direction: column;
+		margin: 15px;
+		padding: 15px;
+		transition: 0.4s;
+		border-radius: 5px;
+		overflow: hidden;
+	}
+	@media (max-width: 874px) {
+		.blogContainer {
+			width: 100%;
+			height: auto;
+			display: flex;
+			align-items: left;
+			flex-direction: column;
+			margin: 15px;
+			padding: 15px;
+			transition: 0.4s;
+			border-radius: 5px;
+		}
+	}
+	.blogContainer:hover {
+		cursor: pointer;
+		background-color: #131415;
+	}
+	.blogTitle {
+		font-family: 'Poppins';
+		font-weight: 500;
+		color: #fff;
+		font-size: 20px;
+		margin-bottom: 15px;
+	}
+	.blogDesc {
+		font-family: 'Poppins';
+		font-weight: 200;
+		color: rgba(255, 255, 255, 0.5);
+		font-size: 16px;
+		margin-bottom: 10px;
+	}
+	.linkContainer {
+		display: flex;
+		justify-content: flex-end;
+		text-align: right;
+		width: 100%;
+	}
+	.blogLink {
+		font-family: 'Poppins';
+		font-weight: 300;
+		color: #fff;
+		font-size: 16px;
+		display: flex;
+	}
+	.linkIcon {
+		height: 24px;
+		margin-left: 5px;
+	}
+</style>

@@ -1,0 +1,41 @@
+---
+export interface Props {
+	type: 'primary' | 'secondary';
+	text: string;
+}
+
+const { type, text } = Astro.props;
+---
+<div class={(type == 'primary' ? 'primary' : 'secondary') + ' buttonContainer'}>
+	<div class="buttonText">{text}</div>
+</div>
+<style>
+	.buttonContainer {
+		display: flex;
+		width: 190px;
+		height: 60px;
+		align-items: center;
+		justify-content: center;
+		border-radius: 5px;
+		transition: 0.3s all;
+		cursor: pointer
+	}
+	.primary {
+		background-color: #fdfdfd;
+	}
+	.primary:hover {
+		background-color: #cacaca;
+	}
+	.secondary {
+		background-color: #F6B5C1;
+	}
+	.secondary:hover {
+		background-color: #c4909a;
+	}
+	.buttonText {
+		font-family: 'Poppins';
+		font-weight: 300;
+		font-size: 18px;
+		color: #000;
+	}
+</style>

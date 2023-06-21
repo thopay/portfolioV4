@@ -1,0 +1,70 @@
+---
+import { Icon } from 'astro-icon';
+---
+<div class="section">
+	<h1 class="sectionHeader">Socials</h1>
+	<div class="socials">
+		<a class="social" href="https://discordapp.com/users/210537692499410946">
+			<Icon pack="mdi" name="discord" class="socialIcon" />
+		</a>
+		<a class="social" href="mailto:me@thopay.dev">
+			<Icon pack="ic" name="round-email" class="socialIcon" />
+		</a>
+		<a class="social" href="https://www.linkedin.com/in/thopay">
+			<Icon pack="mdi" name="linkedin" class="socialIcon" />
+		</a>
+		<a class="social" href="https://github.com/thopay">
+			<Icon pack="mdi" name="github" class="socialIcon" />
+		</a>
+		<a class="social" href="https://open.spotify.com/user/aojs6e41lqykkruq12h6qhuvl">
+			<Icon pack="mdi" name="spotify" class="socialIcon" />
+		</a>
+		<a class="social" href="https://twitter.com/th___mas">
+			<Icon pack="mdi" name="twitter" class="socialIcon" />
+		</a>
+	</div>
+</div>
+<style>
+	/* Handle .section height for mobile */
+	.section {
+		background-color: #F6B5C1;
+		min-height: 33vh;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+	}
+	.sectionHeader {
+		font-size: 32px;
+		font-family: 'Poppins';
+		font-weight: 600;
+		margin-bottom: 1em;
+	}
+	.socialIcon {
+		height: 64px;
+		color: #000;
+	}
+	.socials {
+		display: flex;
+	}
+	.social {
+		margin: 0 2em;
+		transition: all 0.2s ease-in-out;
+	}
+	.social:hover {
+		transform: scale(1.1);
+	}
+	@media (max-width: 874px) {
+		.socials {
+			flex-direction: column;
+		}
+		.social {
+			margin: 0 0 2em 0;
+		}
+		.section {
+			padding: 1em 0;
+			height: 100vh;
+		}
+	}
+</style>

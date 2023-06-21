@@ -1,0 +1,93 @@
+---
+import { Icon } from 'astro-icon';
+---
+<div class="bottomNav">
+	<div class="importantSocials">
+		<a href="mailto:me@thopay.dev"><div class="importantSocial"><Icon pack="ic" name="outline-email" class="socialIcon" />me@thopay.dev</div></a>
+		<a href="https://github.com/thopay"><div class="importantSocial"><Icon pack="ri" name="github-line" class="socialIcon" />thopay</div></a>
+		<a href="https://linkedin.com/in/thopay"><div class="importantSocial"><Icon pack="uil" name="linkedin-alt" class="socialIcon linkedin" />thopay</div></a>
+	</div>
+	<div class="topNav">
+		<div class="navLink">Blog</div>
+		<div class="navLink">Projects</div>
+		<div class="navLink">Education</div>
+		<div class="navLink">Experience</div>
+		<div class="navLink">Skills</div>
+		<div class="navLink">Socials</div>
+	</div>
+</div>
+<style>
+	.bottomNav {
+		width: 100%;
+		height: 130px;
+		background-color: #F6B5C1;
+		display: flex;
+		justify-content: center;
+		position: relative;
+	}
+	.topNav {
+		width: 874px;
+		height: 55px;
+		background-color: #FDFDFC;
+		position: absolute;
+		bottom: -35px;
+		border-radius: 5px;
+		padding: 10px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	@media (max-width: 874px) {
+		.topNav {
+			display: none;
+		}
+		.bottomNav {
+			display: none;
+		}
+	}
+	.importantSocials {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	@media (max-width: 874px) {
+		.importantSocials {
+			flex-direction: row;
+		}
+	}
+	.importantSocial {
+		margin: 0 30px;
+		font-family: 'Poppins';
+		font-weight: 500;
+		font-size: 16px;
+		display: flex;
+		align-items: center;
+	}
+	.importantSocials a {
+		transition: 0.3s;
+	}
+	.importantSocials a:hover {
+		scale: 1.05;
+	}
+	.socialIcon {
+		height: 24px;
+		margin-right: 10px;
+	}
+	.linkedin {
+		margin-top: -7px;
+	}
+	.navLink {
+		padding: 0 30px;
+		font-family: 'Poppins';
+		font-weight: 600;
+		font-size: 16px;
+		color: rgba(0, 0, 0, 0.5);
+		transition: 0.3s;
+		z-index: 10;
+	}
+	.navLink:hover {
+		cursor: pointer;
+		color: rgba(0, 0, 0, 1);
+	}
+</style>
