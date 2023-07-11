@@ -3,7 +3,7 @@ import Button from "./Button.astro";
 import { Icon } from 'astro-icon';
 ---
 <div class="section">
-	<div class="left">
+	<div class="left" id="skills">
 		<h1 class="sectionHeader">Skills</h1>
 		<div class="skillGroup">
 			<h2 class="skillGroupHeader">Languages</h2>
@@ -26,10 +26,10 @@ import { Icon } from 'astro-icon';
 			<h3 class="skillGroupList">Data Structures, Algorithms, Network Analysis, Pen Testing, UI/UX Design, SEO, Reverse Engineering</h3>
 		</div>
 		<div class="resumeButton">
-			<Button type="primary" text="View Full Resume"/>
+			<Button type="primary" text="View Full Resume" href="/resume.pdf"/>
 		</div>
 	</div>
-	<div class="right">
+	<div class="right" id="experience">
 		<h1 class="sectionHeader">Experience</h1>
 		<div class="experienceGroup">
 			<img src="/John_Deere.png" class="experienceBrand"/>

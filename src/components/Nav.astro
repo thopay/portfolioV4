@@ -1,5 +1,10 @@
 ---
 import { Icon } from 'astro-icon';
+export interface Props {
+	page: string;
+}
+
+const { page } = Astro.props;
 ---
 <div class="bottomNav">
 	<div class="importantSocials">
@@ -8,13 +13,81 @@ import { Icon } from 'astro-icon';
 		<a href="https://linkedin.com/in/thopay"><div class="importantSocial"><Icon pack="uil" name="linkedin-alt" class="socialIcon linkedin" />thopay</div></a>
 	</div>
 	<div class="topNav">
+		{page !== 'index' && <div class="navLink">Home</div>}
 		<div class="navLink">Blog</div>
 		<div class="navLink">Projects</div>
 		<div class="navLink">Education</div>
-		<div class="navLink">Experience</div>
 		<div class="navLink">Skills</div>
+		<div class="navLink">Experience</div>
 		<div class="navLink">Socials</div>
 	</div>
+</div>
+<div class="burgerMenu">
+	<Icon pack="ri" name="menu-line" class="burgerMenuIcon"/>
+</div>
+<div class="sideNav">
+	<div class="closeButton">
+		<Icon pack="ic" name="baseline-close" class="burgerMenuClose"/>
+	</div>
+	<div class="sideNavLinks">
+		{page !== 'index' && <div class="sideNavLink">Home</div>}
+		<div class="sideNavLink">Blog</div>
+		<div class="sideNavLink">Projects</div>
+		<div class="sideNavLink">Education</div>
+		<div class="sideNavLink">Skills</div>
+		<div class="sideNavLink">Experience</div>
+		<div class="sideNavLink">Socials</div>
+	</div>
+	<script define:vars={{ page }}>
+		function smoothScrollTo(element) {
+			document.querySelector(element).scrollIntoView({
+				behavior: 'smooth',
+				block: 'start'
+			});
+		}
+		window.addEventListener('DOMContentLoaded', () => {
+			const hash = window.location.hash
+			if (hash) {
+				smoothScrollTo(hash)
+			}
+		});
+		const navLinks = document.querySelectorAll('.navLink');
+		navLinks.forEach(navLink => {
+			navLink.addEventListener('click', () => {
+				if (navLink.innerHTML.toLowerCase() === 'home') {
+					return window.location.href = '/';
+				}
+				if (page !== 'index' && navLink.innerHTML.toLowerCase() !== 'blog') {
+					window.location.href = `/#${navLink.innerHTML.toLowerCase()}`;
+				}
+				smoothScrollTo(`#${navLink.innerHTML.toLowerCase()}`);
+			});
+		});
+		const sideNavLinks = document.querySelectorAll('.sideNavLink');
+		sideNavLinks.forEach(sideNavLink => {
+			sideNavLink.addEventListener('click', () => {
+				document.querySelector('.sideNav').classList.remove('open');
+				setTimeout(() => {
+					if (sideNavLink.innerHTML.toLowerCase() === 'home') {
+						return window.location.href = '/';
+					}
+					if (page !== 'index' && sideNavLink.innerHTML.toLowerCase() !== 'blog') {
+						window.location.href = `/#${sideNavLink.innerHTML.toLowerCase()}`;
+					}
+					smoothScrollTo(`#${sideNavLink.innerHTML.toLowerCase()}`);
+				}, 300);
+			});
+		});
+		const closeButton = document.querySelector('.closeButton');
+		closeButton.addEventListener('click', () => {
+			document.querySelector('.sideNav').classList.remove('open');
+		});
+		const burgerMenu = document.querySelector('.burgerMenu');
+		burgerMenu.addEventListener('click', () => {
+			document.querySelector('.sideNav').classList.add('open');
+		});
+
+	</script>
 </div>
 <style>
 	.bottomNav {
@@ -89,5 +162,82 @@ import { Icon } from 'astro-icon';
 	.navLink:hover {
 		cursor: pointer;
 		color: rgba(0, 0, 0, 1);
+	}
+	.burgerMenu {
+		height: 55px;
+		width: 100%;
+		display: flex;
+		justify-content: right;
+		align-items: center;
+		padding-right: 20px;
+		padding-top: 18px;
+		position: absolute;
+		z-index: 10;
+	}
+	.burgerMenuIcon {
+		height: 32px;
+		color: white;
+		mix-blend-mode: difference;
+	}
+	@media (min-width: 874px) {
+		.burgerMenu {
+			display: none;
+		}
+	}
+	.sideNav {
+		width: 100vw;
+		overflow: hidden;
+		height: 100%;
+		background-color: white;
+		position: fixed;
+		top: 0;
+		left: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 100;
+		transform: translateX(100%);
+		transition: transform 0.3s ease-in-out;
+	}
+	.sideNav.open {
+		transform: translateX(0%);
+	}
+	.sideNavLinks {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	.sideNavLink {
+		padding: 20px 0;
+		font-family: 'Poppins';
+		font-weight: 600;
+		font-size: 24px;
+		color: black;
+		transition: 0.3s;
+	}
+	.sideNavLink:hover {
+		cursor: pointer;
+		color: rgba(0, 0, 0, 1);
+	}
+	@media (min-width: 874px) {
+		.sideNav {
+			display: none;
+		}
+	}
+	.burgerMenuClose {
+		height: 32px;
+		color: black;
+	}
+	.closeButton {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+	}
+	@media (min-width: 874px) {
+		.closeButton {
+			display: none;
+		}
 	}
 </style>

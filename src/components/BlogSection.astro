@@ -2,14 +2,14 @@
 import BlogCard from './BlogCard.astro';
 import Button from './Button.astro';
 ---
-<div class="blogSection">
+<div class="blogSection" id="blog">
 	<h1 class="sectionHeader">Blog</h1>
 	<div class="blogPostsContainer">
 		<BlogCard title="My Leetcode Journey" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac libero vulputate, consequat lorem a, sodales diam. Aenean congue ex ac posuere vestibulum. Nullam nec ante dictum, semper leo sagittis, iaculis risus. Quisque eget posuere urna, sed fringilla lectus. Praesent euismod tristique dolor, ac ullamcorper tortor suscipit eget..." />
 		<BlogCard title="Rust vs Go?" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac libero vulputate, consequat lorem a, sodales diam. Aenean congue ex ac posuere vestibulum. Nullam nec ante dictum, semper leo sagittis, iaculis risus. Quisque eget posuere urna, sed fringilla lectus. Praesent euismod tristique dolor, ac ullamcorper tortor suscipit eget..." />
 		<BlogCard title="How I would learn to code if I started over" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac libero vulputate, consequat lorem a, sodales diam. Aenean congue ex ac posuere vestibulum. Nullam nec ante dictum, semper leo sagittis, iaculis risus. Quisque eget posuere urna, sed fringilla lectus. Praesent euismod tristique dolor, ac ullamcorper tortor suscipit eget..." />
 	</div>
-	<Button type={'primary'} text="View All Posts" />
+	<Button type={'primary'} text="View All Posts" href="#"/>
 </div>
 <style>
 	.blogSection {

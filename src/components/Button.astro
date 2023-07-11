@@ -2,13 +2,16 @@
 export interface Props {
 	type: 'primary' | 'secondary';
 	text: string;
+	href: string;
 }
 
-const { type, text } = Astro.props;
+const { type, text, href } = Astro.props;
 ---
-<div class={(type == 'primary' ? 'primary' : 'secondary') + ' buttonContainer'}>
-	<div class="buttonText">{text}</div>
-</div>
+<a href={href}>
+	<div class={(type == 'primary' ? 'primary' : 'secondary') + ' buttonContainer'}>
+		<div class="buttonText">{text}</div>
+	</div>
+</a>
 <style>
 	.buttonContainer {
 		display: flex;
