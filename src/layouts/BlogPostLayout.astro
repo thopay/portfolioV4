@@ -46,15 +46,190 @@ const {frontmatter} = Astro.props;
 		margin-bottom: 1em;
 	}
 	.blogContent {
-		color: #FFF;
-		font-family: Poppins;
-		font-size: 20px;
-		font-style: normal;
-		font-weight: 300;
-		line-height: 150%;
 		margin-top: 2em;
 		width: 100%;
 		max-width: 800px;
+	}
+	:global(.blogContent h1) {
+		font-family: Poppins;
+		font-size: 32px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: normal;
+		margin-bottom: 1em;
+		color: white;
+	}
+	:global(.blogContent h2) {
+		font-family: Poppins;
+		font-size: 24px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: normal;
+		margin-bottom: 1em;
+		color: white;
+	}
+	:global(.blogContent h3) {
+		font-family: Poppins;
+		font-size: 20px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: normal;
+		margin-bottom: 1em;
+		color: white;
+	}
+	:global(.blogContent h4) {
+		font-family: Poppins;
+		font-size: 18px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: normal;
+		margin-bottom: 1em;
+		color: white;
+	}
+	:global(.blogContent h5) {
+		font-family: Poppins;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: normal;
+		margin-bottom: 1em;
+		color: white;
+	}
+	:global(.blogContent h6) {
+		font-family: Poppins;
+		font-size: 14px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: normal;
+		margin-bottom: 1em;
+		color: white;
+	}
+	:global(.blogContent p) {
+		font-family: Poppins;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 300;
+		line-height: normal;
+		margin-bottom: 1em;
+		color: white;
+	}
+	:global(.blogContent a) {
+		color: #FFC107;
+	}
+	:global(.blogContent a:hover) {
+		color: #FFC107;
+		text-decoration: underline;
+	}
+	:global(.blogContent ul) {
+		font-family: Poppins;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		margin-bottom: 1em;
+		color: white;
+	}
+	:global(.blogContent ol) {
+		font-family: Poppins;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		margin-bottom: 1em;
+		color: white;
+		counter-reset: item;
+	}
+	:global(.blogContent ol li) {
+		counter-increment: item;
+	}
+	:global(.blogContent ol li)::before {
+		content: counter(item) ". ";
+	}
+	:global(.blogContent ul li)::before {
+		content: "• ";
+	}
+	:global(.blogContent li) {
+		font-family: Poppins;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		margin-bottom: 1em;
+		color: white;
+	}
+
+	:global(.blogContent blockquote) {
+		font-family: Poppins;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		margin-bottom: 1em;
+		color: white;
+		border-left: 4px solid #FFC107;
+		padding-left: 1em;
+	}
+	:global(.blogContent pre) {
+		font-family: 'Fira Code', monospace;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		color: white;
+		padding: 1em;
+		border-radius: 4px;
+		margin: 1em 0.25em;
+	}
+	:global(.blogContent hr) {
+		border: 1px solid #FFC107;
+	}
+	:global(.blogContent img) {
+		width: 100%;
+		max-width: 800px;
+	}
+	:global(.blogContent table) {
+		width: 100%;
+		max-width: 800px;
+		margin: 1em 0;
+	}
+	:global(.blogContent table th) {
+		font-family: Poppins;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: normal;
+		color: white;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	}
+	:global(.blogContent table td) {
+		font-family: Poppins;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 300;
+		line-height: normal;
+		color: white;
+		padding: 0.5em 0.25em;
+	}
+	:global(.blogContent table tr) {
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	}
+	:global(.blogContent table tr:last-child) {
+		border-bottom: none;
+	}
+	:global(.blogContent table tr:nth-child(2n)) {
+		background-color: rgba(255, 255, 255, 0.1);
+	}
+	:global(.blogContent table tr:nth-child(2n+1)) {
+		background-color: rgba(255, 255, 255, 0.05);
+	}
+	:global(.blogContent table tr:hover) {
+		background-color: rgba(255, 255, 255, 0.2);
+	}
+	:global(.blogContent table tr:hover td) {
+		color: white;
+	}
+	:global(.blogContent table tr:hover th) {
+		color: white;
 	}
 	.navigation {
 		display: flex;
