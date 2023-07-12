@@ -1,0 +1,105 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import { Icon } from 'astro-icon';
+const {frontmatter} = Astro.props;
+---
+<Layout title="Thomas - Full Stack Dev">
+	<Nav page="blogPost"/>
+	<div class="blogSection">
+		<h1 class="blogTitle">{frontmatter.title}</h1>
+		<div class="navigation">
+			<div class="back">
+				<a href="/blog" class="backButton"><Icon pack="ri" name="arrow-left-line" class="backIcon"/>Back</a>
+			</div>
+			<Icon pack={frontmatter.icon.split(':')[0]} name={frontmatter.icon.split(':')[1]} class="blogIcon"/>
+			<div class="postDateContainer">
+				<p class="postDate">{frontmatter.date}</p>
+			</div>
+		</div>
+		<div class="blogContent">
+			<slot />
+		</div>
+	</div>
+	</div>
+</Layout>
+
+<style>
+	.blogSection {
+		background-color: #1B2023;
+		min-height: 100vh;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		padding: 4em 2em;
+		overflow: hidden;
+	}
+	.blogTitle {
+		color: #FFF;
+		text-align: center;
+		font-family: Poppins;
+		font-size: 32px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: normal;
+		margin-bottom: 1em;
+	}
+	.blogContent {
+		color: #FFF;
+		font-family: Poppins;
+		font-size: 20px;
+		font-style: normal;
+		font-weight: 300;
+		line-height: 150%;
+		margin-top: 2em;
+		width: 100%;
+		max-width: 800px;
+	}
+	.navigation {
+		display: flex;
+		width: 100%;
+		max-width: 800px;
+		justify-content: space-between;
+	}
+	.back {
+		display: flex;
+		align-items: center;
+		color: rgba(255, 255, 255, 0.5);
+		transition: all 0.2s ease-in-out;
+	}
+	.back:hover {
+		color: rgba(255, 255, 255, 1);
+	}
+	.backButton {
+		font-family: Poppins;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		display: flex;
+		align-items: center;
+		flex-direction: row;
+	}
+	.backIcon {
+		height: 32px;
+		margin-right: 0.5em;
+	}
+	.blogIcon {
+		height: 100px;
+		color: white;
+	}
+	.postDateContainer {
+		display: flex;
+		align-items: center;
+	}
+	.postDate {
+		color: rgba(255, 255, 255, 0.5);
+		font-family: Poppins;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		margin-left: 1em;
+	}
+</style>

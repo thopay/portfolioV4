@@ -3,23 +3,26 @@ import { Icon } from 'astro-icon';
 export interface Props {
 	title: string;
 	description: string;
+	link: string | undefined;
 }
 
-const { title, description } = Astro.props;
+const { title, description, link = '#' } = Astro.props;
 ---
-<div class="blogContainer">
-	<div class="blogTitle">
-		{title}
-	</div>
-	<div class="blogDesc">
-		{description}
-	</div>
-	<div class="linkContainer">
-		<div class="blogLink">
-			Read More <Icon pack="ph" name="arrow-right" class="linkIcon" />
+<a href={link}>
+	<div class="blogContainer">
+		<div class="blogTitle">
+			{title}
+		</div>
+		<div class="blogDesc">
+			{description}
+		</div>
+		<div class="linkContainer">
+			<div class="blogLink">
+				Read More <Icon pack="ph" name="arrow-right" class="linkIcon" />
+			</div>
 		</div>
 	</div>
-</div>
+</a>
 <style>
 	/* Mobile sizing for .blogContainer */
 	.blogContainer {

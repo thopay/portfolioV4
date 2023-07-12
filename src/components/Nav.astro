@@ -2,9 +2,10 @@
 import { Icon } from 'astro-icon';
 export interface Props {
 	page: string;
+	burgerColor?: string;
 }
 
-const { page } = Astro.props;
+const { page, burgerColor = 'white' } = Astro.props;
 ---
 <div class="bottomNav">
 	<div class="importantSocials">
@@ -13,7 +14,7 @@ const { page } = Astro.props;
 		<a href="https://linkedin.com/in/thopay"><div class="importantSocial"><Icon pack="uil" name="linkedin-alt" class="socialIcon linkedin" />thopay</div></a>
 	</div>
 	<div class="topNav">
-		{page !== 'index' && <div class="navLink">Home</div>}
+		<div class="navLink">Home</div>
 		<div class="navLink">Blog</div>
 		<div class="navLink">Projects</div>
 		<div class="navLink">Education</div>
@@ -30,7 +31,7 @@ const { page } = Astro.props;
 		<Icon pack="ic" name="baseline-close" class="burgerMenuClose"/>
 	</div>
 	<div class="sideNavLinks">
-		{page !== 'index' && <div class="sideNavLink">Home</div>}
+		<div class="sideNavLink">Home</div>
 		<div class="sideNavLink">Blog</div>
 		<div class="sideNavLink">Projects</div>
 		<div class="sideNavLink">Education</div>
@@ -38,7 +39,7 @@ const { page } = Astro.props;
 		<div class="sideNavLink">Experience</div>
 		<div class="sideNavLink">Socials</div>
 	</div>
-	<script define:vars={{ page }}>
+	<script define:vars={{ page, burgerColor }}>
 		function smoothScrollTo(element) {
 			document.querySelector(element).scrollIntoView({
 				behavior: 'smooth',
@@ -46,19 +47,32 @@ const { page } = Astro.props;
 			});
 		}
 		window.addEventListener('DOMContentLoaded', () => {
+			document.querySelector('.burgerMenuIcon').style.color = burgerColor;
 			const hash = window.location.hash
 			if (hash) {
 				smoothScrollTo(hash)
+			}
+			if (page === 'blog' || page === 'blogPost') {
+				document.querySelectorAll('.navLink')[1].classList.add('active');
+			}
+			if (page === 'projects') {
+				document.querySelectorAll('.navLink')[2].classList.add('active');
 			}
 		});
 		const navLinks = document.querySelectorAll('.navLink');
 		navLinks.forEach(navLink => {
 			navLink.addEventListener('click', () => {
-				if (navLink.innerHTML.toLowerCase() === 'home') {
+				if (navLink.innerHTML.toLowerCase() === 'home' && page !== 'index') {
 					return window.location.href = '/';
 				}
-				if (page !== 'index' && navLink.innerHTML.toLowerCase() !== 'blog') {
-					window.location.href = `/#${navLink.innerHTML.toLowerCase()}`;
+				if (navLink.innerHTML.toLowerCase() === 'blog' && page !== 'blog' && page !== 'index') {
+					return window.location.href = '/blog';
+				}
+				if (navLink.innerHTML.toLowerCase() === 'projects' && page !== 'projects' && page !== 'index') {
+					return window.location.href = '/projects';
+				}
+				if (navLink.innerHTML.toLowerCase() === 'blog' && page === 'blogPost') {
+					return window.location.href = '/blog';
 				}
 				smoothScrollTo(`#${navLink.innerHTML.toLowerCase()}`);
 			});
@@ -89,7 +103,7 @@ const { page } = Astro.props;
 
 	</script>
 </div>
-<style>
+<style define:vars={{ burgerColor }}>
 	.bottomNav {
 		width: 100%;
 		height: 130px;
@@ -163,6 +177,9 @@ const { page } = Astro.props;
 		cursor: pointer;
 		color: rgba(0, 0, 0, 1);
 	}
+	.navLink.active {
+		color: rgba(0, 0, 0, 1);
+	}
 	.burgerMenu {
 		height: 55px;
 		width: 100%;
@@ -176,8 +193,6 @@ const { page } = Astro.props;
 	}
 	.burgerMenuIcon {
 		height: 32px;
-		color: white;
-		mix-blend-mode: difference;
 	}
 	@media (min-width: 874px) {
 		.burgerMenu {

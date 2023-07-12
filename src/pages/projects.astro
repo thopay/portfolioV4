@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+---
+<Layout title="Thomas - Full Stack Dev">
+	<Nav page="projects" burgerColor='black'/>
+	<div class="projectsSection" id="projects">
+		<h1 class="sectionHeader">Projects</h1>
+		<div class="projectsContainer">
+			<ProjectCard title="TREND Magazine Website" description="Designed and built a full-stack blog for the Iowa State University TREND Fashion Magazine. A Next.js frontend with React and Tailwind CSS with a GraphQL, Strapi, and Postgres backend." type='page' />
+			<ProjectCard title="SpamGram" description="A social media app that was developed by a team of five. Featuring a REST API backend built with Node.js, Express.js, and MongoDB, and a frontend UI designed with Figma and implemented with React Native." type='github' />
+			<ProjectCard title="EasyACO" description="A sneaker marketplace designed using Adobe XD and implemented using Bootstrap and JavaScript. A full backend and relational database developed with Python, Flask, Postgres, and Discord OAuth." type='github' />
+			<ProjectCard title="TREND Magazine Website" description="Designed and built a full-stack blog for the Iowa State University TREND Fashion Magazine. A Next.js frontend with React and Tailwind CSS with a GraphQL, Strapi, and Postgres backend." type='page' />
+			<ProjectCard title="SpamGram" description="A social media app that was developed by a team of five. Featuring a REST API backend built with Node.js, Express.js, and MongoDB, and a frontend UI designed with Figma and implemented with React Native." type='github' />
+			<ProjectCard title="EasyACO" description="A sneaker marketplace designed using Adobe XD and implemented using Bootstrap and JavaScript. A full backend and relational database developed with Python, Flask, Postgres, and Discord OAuth." type='github' />
+			<ProjectCard title="TREND Magazine Website" description="Designed and built a full-stack blog for the Iowa State University TREND Fashion Magazine. A Next.js frontend with React and Tailwind CSS with a GraphQL, Strapi, and Postgres backend." type='page' />
+			<ProjectCard title="SpamGram" description="A social media app that was developed by a team of five. Featuring a REST API backend built with Node.js, Express.js, and MongoDB, and a frontend UI designed with Figma and implemented with React Native." type='github' />
+			<ProjectCard title="EasyACO" description="A sneaker marketplace designed using Adobe XD and implemented using Bootstrap and JavaScript. A full backend and relational database developed with Python, Flask, Postgres, and Discord OAuth." type='github' />
+		</div>
+	</div>
+</Layout>
+<style>
+	.projectsSection {
+		background-color: #fdfdfd;
+		min-height: 100vh;
+		padding: 3em 0;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		overflow: hidden;
+	}
+	.sectionHeader {
+		color: #000;
+		font-size: 32px;
+		font-family: 'Poppins';
+		font-weight: 600;
+		margin-bottom: 25px;
+	}
+	.projectsContainer {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+		width: 100%;
+		max-width: 1200px;
+	}
+</style>
