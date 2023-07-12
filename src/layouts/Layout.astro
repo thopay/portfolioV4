@@ -7,16 +7,17 @@ import '@fontsource/poppins/600.css'
 import '@fontsource/poppins/700.css'
 export interface Props {
 	title: string;
+	description?: string;
 }
 
-const { title } = Astro.props;
+const { title, description = "Thomas is a full stack developer currently attending Iowa State University." } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Thomas is a full stack developer currently attending Iowa State University.">
+		<meta name="description" content={description}>
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />

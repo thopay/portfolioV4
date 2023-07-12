@@ -4,7 +4,7 @@ import Nav from '../components/Nav.astro';
 import { Icon } from 'astro-icon';
 const {frontmatter} = Astro.props;
 ---
-<Layout title="Thomas - Full Stack Dev">
+<Layout title={frontmatter.title} description={frontmatter.description}>
 	<Nav page="blogPost"/>
 	<div class="blogSection">
 		<h1 class="blogTitle">{frontmatter.title}</h1>
