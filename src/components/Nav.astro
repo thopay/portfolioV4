@@ -74,6 +74,12 @@ const { page, burgerColor = 'white' } = Astro.props;
 				if (navLink.innerHTML.toLowerCase() === 'blog' && page === 'blogPost') {
 					return window.location.href = '/blog';
 				}
+				if (page === 'projects' && navLink.innerHTML.toLowerCase() !== 'projects') {
+					window.location.href = `/#${navLink.innerHTML.toLowerCase()}`;
+				}
+				if (page === 'blog' && navLink.innerHTML.toLowerCase() !== 'blog') {
+						window.location.href = `/#${navLink.innerHTML.toLowerCase()}`;
+				}
 				smoothScrollTo(`#${navLink.innerHTML.toLowerCase()}`);
 			});
 		});
