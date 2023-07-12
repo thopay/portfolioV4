@@ -22,6 +22,14 @@ const { title, description = "Thomas is a full stack developer currently attendi
 		<link rel="icon" type="image/ico" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<meta property="og:title" content={title}>
+		<meta property="og:description" content={description}>
+		<meta property="og:image" content="https://thopay.dev/thomas.jpg">
+		<meta property="og:url" content="https://thopay.dev/">
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content={title}>
+		<meta name="twitter:description" content={description}>
+		<meta name="twitter:image" content="https://thopay.dev/thomas.jpg">
 	</head>
 	<body>
 		<slot />
