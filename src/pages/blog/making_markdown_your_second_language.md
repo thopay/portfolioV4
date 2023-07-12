@@ -43,6 +43,13 @@ Lists are essential in our everyday writing. Whether it's for noting down your g
 2. Another ordered item
 ```
 
+Output:
+- Unordered item 
+- Another unordered item
+
+1. Ordered item
+2. Another ordered item
+
 ## 4. Tables
 
 It doesn't stop there! You can also create tables in markdown. Let's say I need to outline the key technologies I've used in my internship:
