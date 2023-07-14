@@ -3,27 +3,31 @@ import { Icon } from 'astro-icon';
 export interface Props {
 	title: string;
 	description: string;
-	type: 'page' | 'github'
+	type: 'demo' | 'github' | 'detailed',
+	link: string;
+	image: string;
 }
 
-const { title, description, type } = Astro.props;
+const { title, description, type, link = '#', image } = Astro.props;
 ---
-<div class="projectContainer">
-	<div class="projectImage">
-		<img src="https://via.placeholder.com/300x300" />
-	</div>
-	<div class="projectTitle">
-		{title}
-	</div>
-	<div class="projectDesc">
-		{description}
-	</div>
-	<div class="linkContainer">
-		<div class="projectLink">
-			Visit {type == 'page' ? 'Page' : 'GitHub'} <Icon pack="ph" name="arrow-right" class="linkIcon" />
+<a href={link} style="display: flex; justify-content: center;">
+	<div class="projectContainer">
+		<div class="projectImageContainer">
+			<img src={image} class="projectImage"/>
+		</div>
+		<div class="projectTitle">
+			{title}
+		</div>
+		<div class="projectDesc">
+			{description}
+		</div>
+		<div class="linkContainer">
+			<div class="projectLink">
+				{type === 'detailed' ? 'View Project' : `View ${type === 'github' ? 'GitHub' : 'Demo'}`} <Icon pack="ph" name="arrow-right" class="linkIcon" />
+			</div>
 		</div>
 	</div>
-</div>
+</a>
 <style>
 	.projectContainer {
 		width: 300px;
@@ -34,18 +38,24 @@ const { title, description, type } = Astro.props;
 		margin: 15px;
 		padding: 15px;
 		transition: 0.4s;
-		border-radius: 5px;
+		border-radius: 3px;
 		justify-self: center;
 		margin-bottom: 50px;
 		overflow: hidden;
 	}
 	.projectContainer:hover {
 		cursor: pointer;
+		box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
 	}
-	.projectImage {
+	.projectImageContainer {
 		width: 100%;
 		border: 2px solid #000;
 		margin-bottom: 40px;
+	}
+	.projectImage {
+		height: 300px;
+		width: 300px;
+		object-fit: cover;
 	}
 	.projectTitle {
 		font-family: 'Poppins';

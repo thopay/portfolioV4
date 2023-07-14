@@ -1,39 +1,62 @@
 ---
-import ProjectCard from './ProjectCard.astro'
-import Button from './Button.astro';
+import ProjectCard from "./ProjectCard.astro";
+import Button from "./Button.astro";
+const allProjects = await Astro.glob("../pages/projects/*.md");
+const filteredProjects = allProjects
+    .sort(
+        (a, b) =>
+            new Date(b.frontmatter.date).valueOf() -
+            new Date(a.frontmatter.date).valueOf()
+    )
+    .slice(0, 3);
 ---
+
 <div class="projectsSection" id="projects">
-	<h1 class="sectionHeader">Projects</h1>
-	<div class="projectsContainer">
-		<ProjectCard title="TREND Magazine Website" description="Designed and built a full-stack blog for the Iowa State University TREND Fashion Magazine. A Next.js frontend with React and Tailwind CSS with a GraphQL, Strapi, and Postgres backend." type='page' />
-		<ProjectCard title="SpamGram" description="A social media app that was developed by a team of five. Featuring a REST API backend built with Node.js, Express.js, and MongoDB, and a frontend UI designed with Figma and implemented with React Native." type='github' />
-		<ProjectCard title="EasyACO" description="A sneaker marketplace designed using Adobe XD and implemented using Bootstrap and JavaScript. A full backend and relational database developed with Python, Flask, Postgres, and Discord OAuth." type='github' />
-	</div>
-	<Button type={'secondary'} text="View All Projects" href="/projects"/>
+    <h1 class="sectionHeader">Projects</h1>
+    <div class="projectsContainer">
+        {
+            filteredProjects.map((project) => {
+                return (
+                    <ProjectCard
+                        title={project.frontmatter.title}
+                        description={project.frontmatter.description}
+                        link={
+                            project.frontmatter.type === "detailed"
+                                ? project.url
+                                : project.frontmatter.link
+                        }
+						image={project.frontmatter.image}
+                        type={project.frontmatter.type}
+                    />
+                );
+            })
+        }
+    </div>
+    <Button type={"secondary"} text="View All Projects" href="/projects" />
 </div>
 <style>
-	.projectsSection {
-		background-color: #fdfdfd;
-		min-height: 100vh;
-		padding: 3em 0;
-		width: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		flex-direction: column;
-		overflow: hidden;
-	}
-	.sectionHeader {
-		color: #000;
-		font-size: 32px;
-		font-family: 'Poppins';
-		font-weight: 600;
-		margin-bottom: 25px;
-	}
-	.projectsContainer {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-		width: 100%;
-		max-width: 1200px;
-	}
+    .projectsSection {
+        background-color: #fdfdfd;
+        min-height: 100vh;
+        padding: 3em 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    .sectionHeader {
+        color: #000;
+        font-size: 32px;
+        font-family: "Poppins";
+        font-weight: 600;
+        margin-bottom: 25px;
+    }
+    .projectsContainer {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        width: 100%;
+        max-width: 1200px;
+    }
 </style>

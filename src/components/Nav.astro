@@ -55,7 +55,7 @@ const { page, burgerColor = 'white' } = Astro.props;
 			if (page === 'blog' || page === 'blogPost') {
 				document.querySelectorAll('.navLink')[1].classList.add('active');
 			}
-			if (page === 'projects') {
+			if (page === 'projects' || page === 'project') {
 				document.querySelectorAll('.navLink')[2].classList.add('active');
 			}
 		});
@@ -73,6 +73,9 @@ const { page, burgerColor = 'white' } = Astro.props;
 				}
 				if (navLink.innerHTML.toLowerCase() === 'blog' && page === 'blogPost') {
 					return window.location.href = '/blog';
+				}
+				if (navLink.innerHTML.toLowerCase() === 'projects' && page === 'project') {
+					return window.location.href = '/projects';
 				}
 				if (page === 'projects' && navLink.innerHTML.toLowerCase() !== 'projects') {
 					window.location.href = `/#${navLink.innerHTML.toLowerCase()}`;

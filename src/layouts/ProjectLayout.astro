@@ -5,19 +5,19 @@ import { Icon } from 'astro-icon';
 const {frontmatter} = Astro.props;
 ---
 <Layout title={frontmatter.title} description={frontmatter.description}>
-	<Nav page="blogPost"/>
-	<div class="blogSection">
-		<h1 class="blogTitle">{frontmatter.title}</h1>
+	<Nav page="project"/>
+	<div class="projectSection">
+		<h1 class="projectTitle">{frontmatter.title}</h1>
 		<div class="navigation">
 			<div class="back">
-				<a href="/blog" class="backButton"><Icon pack="ri" name="arrow-left-line" class="backIcon"/>Back</a>
+				<a href="/projects" class="backButton"><Icon pack="ri" name="arrow-left-line" class="backIcon"/>Back</a>
 			</div>
-			<Icon pack={frontmatter.icon.split(':')[0]} name={frontmatter.icon.split(':')[1]} class="blogIcon"/>
+			<a href={frontmatter.link}><h2 class="projectLink">View Here</h2></a>
 			<div class="postDateContainer">
 				<p class="postDate">{frontmatter.date}</p>
 			</div>
 		</div>
-		<div class="blogContent">
+		<div class="projectContent">
 			<slot />
 		</div>
 	</div>
@@ -25,8 +25,8 @@ const {frontmatter} = Astro.props;
 </Layout>
 
 <style>
-	.blogSection {
-		background-color: #1B2023;
+	.projectSection {
+		background-color: #fff;
 		min-height: 100vh;
 		width: 100%;
 		display: flex;
@@ -35,8 +35,8 @@ const {frontmatter} = Astro.props;
 		padding: 4em 2em;
 		overflow: hidden;
 	}
-	.blogTitle {
-		color: #FFF;
+	.projectTitle {
+		color: #000;
 		text-align: center;
 		font-family: Poppins;
 		font-size: 32px;
@@ -45,196 +45,206 @@ const {frontmatter} = Astro.props;
 		line-height: normal;
 		margin-bottom: 1em;
 	}
-	.blogContent {
-		margin-top: 2em;
-		width: 100%;
-		max-width: 800px;
-	}
-	:global(.blogContent h1) {
-		font-family: Poppins;
-		font-size: 32px;
-		font-style: normal;
-		font-weight: 600;
-		line-height: normal;
-		margin-bottom: 1em;
-		color: white;
-	}
-	:global(.blogContent h2) {
+	.projectLink {
+		color: #FFC107;
+		text-align: center;
 		font-family: Poppins;
 		font-size: 24px;
 		font-style: normal;
 		font-weight: 600;
 		line-height: normal;
 		margin-bottom: 1em;
-		color: white;
 	}
-	:global(.blogContent h3) {
+	.projectContent {
+		margin-top: 2em;
+		width: 100%;
+		max-width: 800px;
+	}
+	:global(.projectContent h1) {
+		font-family: Poppins;
+		font-size: 32px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: normal;
+		margin-bottom: 1em;
+		color: black;
+	}
+	:global(.projectContent h2) {
+		font-family: Poppins;
+		font-size: 24px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: normal;
+		margin-bottom: 1em;
+		color: black;
+	}
+	:global(.projectContent h3) {
 		font-family: Poppins;
 		font-size: 20px;
 		font-style: normal;
 		font-weight: 600;
 		line-height: normal;
 		margin-bottom: 1em;
-		color: white;
+		color: black;
 	}
-	:global(.blogContent h4) {
+	:global(.projectContent h4) {
 		font-family: Poppins;
 		font-size: 18px;
 		font-style: normal;
 		font-weight: 600;
 		line-height: normal;
 		margin-bottom: 1em;
-		color: white;
+		color: black;
 	}
-	:global(.blogContent h5) {
+	:global(.projectContent h5) {
 		font-family: Poppins;
 		font-size: 16px;
 		font-style: normal;
 		font-weight: 600;
 		line-height: normal;
 		margin-bottom: 1em;
-		color: white;
+		color: black;
 	}
-	:global(.blogContent h6) {
+	:global(.projectContent h6) {
 		font-family: Poppins;
 		font-size: 14px;
 		font-style: normal;
 		font-weight: 600;
 		line-height: normal;
 		margin-bottom: 1em;
-		color: white;
+		color: black;
 	}
-	:global(.blogContent p) {
+	:global(.projectContent p) {
 		font-family: Poppins;
 		font-size: 16px;
 		font-style: normal;
 		font-weight: 300;
 		line-height: normal;
 		margin-bottom: 1em;
-		color: white;
+		color: black;
 	}
-	:global(.blogContent a) {
+	:global(.projectContent a) {
 		color: #FFC107;
 	}
-	:global(.blogContent a:hover) {
+	:global(.projectContent a:hover) {
 		color: #FFC107;
 		text-decoration: underline;
 	}
-	:global(.blogContent ul) {
+	:global(.projectContent ul) {
 		font-family: Poppins;
 		font-size: 16px;
 		font-style: normal;
 		font-weight: 400;
 		line-height: normal;
 		margin-bottom: 1em;
-		color: white;
+		color: black;
 	}
-	:global(.blogContent ol) {
+	:global(.projectContent ol) {
 		font-family: Poppins;
 		font-size: 16px;
 		font-style: normal;
 		font-weight: 400;
 		line-height: normal;
 		margin-bottom: 1em;
-		color: white;
+		color: black;
 		counter-reset: item;
 	}
-	:global(.blogContent ol li) {
+	:global(.projectContent ol li) {
 		counter-increment: item;
 	}
-	:global(.blogContent ol li)::before {
+	:global(.projectContent ol li)::before {
 		content: counter(item) ". ";
 	}
-	:global(.blogContent ul li)::before {
+	:global(.projectContent ul li)::before {
 		content: "• ";
 	}
-	:global(.blogContent li) {
+	:global(.projectContent li) {
 		font-family: Poppins;
 		font-size: 16px;
 		font-style: normal;
 		font-weight: 400;
 		line-height: normal;
 		margin-bottom: 1em;
-		color: white;
+		color: black;
 	}
 
-	:global(.blogContent blockquote) {
+	:global(.projectContent blockquote) {
 		font-family: Poppins;
 		font-size: 16px;
 		font-style: normal;
 		font-weight: 400;
 		line-height: normal;
 		margin-bottom: 1em;
-		color: white;
+		color: black;
 		border-left: 4px solid #FFC107;
 		padding-left: 1em;
 	}
-	:global(.blogContent pre) {
+	:global(.projectContent pre) {
 		font-family: 'Fira Code', monospace;
 		font-size: 16px;
 		font-style: normal;
 		font-weight: 400;
 		line-height: normal;
-		color: white;
+		color: black;
 		padding: 1em;
 		border-radius: 4px;
 		margin: 1em 0.25em;
 	}
-	:global(.blogContent hr) {
+	:global(.projectContent hr) {
 		border: 1px solid #FFC107;
 		margin: 2em 0;
 		margin-left: 5%;
 		margin-right: 5%;
 	}
-	:global(.blogContent img) {
+	:global(.projectContent img) {
 		width: 100%;
 		max-width: 800px;
 		margin: 1em 0;
 		padding: 1em;
 	}
-	:global(.blogContent table) {
+	:global(.projectContent table) {
 		width: 100%;
 		max-width: 800px;
 		margin: 1em 0;
 	}
-	:global(.blogContent table th) {
+	:global(.projectContent table th) {
 		font-family: Poppins;
 		font-size: 16px;
 		font-style: normal;
 		font-weight: 600;
 		line-height: normal;
-		color: white;
-		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+		color: black;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	}
-	:global(.blogContent table td) {
+	:global(.projectContent table td) {
 		font-family: Poppins;
 		font-size: 16px;
 		font-style: normal;
 		font-weight: 300;
 		line-height: normal;
-		color: white;
+		color: black;
 		padding: 0.5em 0.25em;
 	}
-	:global(.blogContent table tr) {
-		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	:global(.projectContent table tr) {
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	}
-	:global(.blogContent table tr:last-child) {
+	:global(.projectContent table tr:last-child) {
 		border-bottom: none;
 	}
-	:global(.blogContent table tr:nth-child(2n)) {
-		background-color: rgba(255, 255, 255, 0.1);
+	:global(.projectContent table tr:nth-child(2n)) {
+		background-color: rgba(0, 0, 0, 0.1);
 	}
-	:global(.blogContent table tr:nth-child(2n+1)) {
-		background-color: rgba(255, 255, 255, 0.05);
+	:global(.projectContent table tr:nth-child(2n+1)) {
+		background-color: rgba(0, 0, 0, 0.05);
 	}
-	:global(.blogContent table tr:hover) {
-		background-color: rgba(255, 255, 255, 0.2);
+	:global(.projectContent table tr:hover) {
+		background-color: rgba(0, 0, 0, 0.2);
 	}
-	:global(.blogContent table tr:hover td) {
-		color: white;
+	:global(.projectContent table tr:hover td) {
+		color: black;
 	}
-	:global(.blogContent table tr:hover th) {
-		color: white;
+	:global(.projectContent table tr:hover th) {
+		color: black;
 	}
 	.navigation {
 		display: flex;
@@ -245,11 +255,11 @@ const {frontmatter} = Astro.props;
 	.back {
 		display: flex;
 		align-items: center;
-		color: rgba(255, 255, 255, 0.5);
+		color: rgba(0, 0, 0, 0.5);
 		transition: all 0.2s ease-in-out;
 	}
 	.back:hover {
-		color: rgba(255, 255, 255, 1);
+		color: rgba(0, 0, 0, 1);
 	}
 	.backButton {
 		font-family: Poppins;
@@ -265,16 +275,16 @@ const {frontmatter} = Astro.props;
 		height: 32px;
 		margin-right: 0.5em;
 	}
-	.blogIcon {
+	.projectIcon {
 		height: 100px;
-		color: white;
+		color: black;
 	}
 	.postDateContainer {
 		display: flex;
 		align-items: center;
 	}
 	.postDate {
-		color: rgba(255, 255, 255, 0.5);
+		color: rgba(0, 0, 0, 0.5);
 		font-family: Poppins;
 		font-size: 16px;
 		font-style: normal;

@@ -2,21 +2,21 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+const allProjects = await Astro.glob('./projects/*.md');
 ---
 <Layout title="Thomas - Projects">
 	<Nav page="projects" burgerColor='black'/>
 	<div class="projectsSection" id="projects">
 		<h1 class="sectionHeader">Projects</h1>
 		<div class="projectsContainer">
-			<ProjectCard title="TREND Magazine Website" description="Designed and built a full-stack blog for the Iowa State University TREND Fashion Magazine. A Next.js frontend with React and Tailwind CSS with a GraphQL, Strapi, and Postgres backend." type='page' />
-			<ProjectCard title="SpamGram" description="A social media app that was developed by a team of five. Featuring a REST API backend built with Node.js, Express.js, and MongoDB, and a frontend UI designed with Figma and implemented with React Native." type='github' />
-			<ProjectCard title="EasyACO" description="A sneaker marketplace designed using Adobe XD and implemented using Bootstrap and JavaScript. A full backend and relational database developed with Python, Flask, Postgres, and Discord OAuth." type='github' />
-			<ProjectCard title="TREND Magazine Website" description="Designed and built a full-stack blog for the Iowa State University TREND Fashion Magazine. A Next.js frontend with React and Tailwind CSS with a GraphQL, Strapi, and Postgres backend." type='page' />
-			<ProjectCard title="SpamGram" description="A social media app that was developed by a team of five. Featuring a REST API backend built with Node.js, Express.js, and MongoDB, and a frontend UI designed with Figma and implemented with React Native." type='github' />
-			<ProjectCard title="EasyACO" description="A sneaker marketplace designed using Adobe XD and implemented using Bootstrap and JavaScript. A full backend and relational database developed with Python, Flask, Postgres, and Discord OAuth." type='github' />
-			<ProjectCard title="TREND Magazine Website" description="Designed and built a full-stack blog for the Iowa State University TREND Fashion Magazine. A Next.js frontend with React and Tailwind CSS with a GraphQL, Strapi, and Postgres backend." type='page' />
-			<ProjectCard title="SpamGram" description="A social media app that was developed by a team of five. Featuring a REST API backend built with Node.js, Express.js, and MongoDB, and a frontend UI designed with Figma and implemented with React Native." type='github' />
-			<ProjectCard title="EasyACO" description="A sneaker marketplace designed using Adobe XD and implemented using Bootstrap and JavaScript. A full backend and relational database developed with Python, Flask, Postgres, and Discord OAuth." type='github' />
+			{
+				allProjects.sort(
+					(a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf()
+				).map((project) => {
+					return (<ProjectCard title={project.frontmatter.title} description={project.frontmatter.description} image={project.frontmatter.image} link={project.frontmatter.type === 'detailed' ? project.url : project.frontmatter.link} type={project.frontmatter.type}/>)
+				}
+				)
+			}
 		</div>
 	</div>
 </Layout>
