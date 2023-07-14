@@ -4,7 +4,7 @@ import Nav from '../components/Nav.astro';
 import { Icon } from 'astro-icon';
 const {frontmatter} = Astro.props;
 ---
-<Layout title={frontmatter.title} description={frontmatter.description} image={frontmatter.image}>
+<Layout title={frontmatter.title} description={frontmatter.description} image={"https://thopay.dev"+frontmatter.image}>
 	<Nav page="project"/>
 	<div class="projectSection">
 		<h1 class="projectTitle">{frontmatter.title}</h1>
