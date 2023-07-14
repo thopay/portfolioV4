@@ -8,9 +8,10 @@ import '@fontsource/poppins/700.css'
 export interface Props {
 	title: string;
 	description?: string;
+	image?: string;
 }
 
-const { title, description = "Thomas is a full stack developer currently attending Iowa State University." } = Astro.props;
+const { title, description = "Thomas is a full stack developer currently attending Iowa State University.", image = 'https://thopay.dev/thomas.jpg' } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -24,12 +25,12 @@ const { title, description = "Thomas is a full stack developer currently attendi
 		<title>{title}</title>
 		<meta property="og:title" content={title}>
 		<meta property="og:description" content={description}>
-		<meta property="og:image" content="https://thopay.dev/thomas.jpg">
+		<meta property="og:image" content={image}>
 		<meta property="og:url" content="https://thopay.dev/">
 		<meta name="twitter:card" content="summary_large_image">
 		<meta name="twitter:title" content={title}>
 		<meta name="twitter:description" content={description}>
-		<meta name="twitter:image" content="https://thopay.dev/thomas.jpg">
+		<meta name="twitter:image" content={image}>
 	</head>
 	<body>
 		<slot />
