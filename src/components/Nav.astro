@@ -178,16 +178,18 @@ const { page, burgerColor = 'white' } = Astro.props;
 		font-family: 'Poppins';
 		font-weight: 600;
 		font-size: 16px;
-		color: rgba(0, 0, 0, 0.5);
+		color: rgba(0, 0, 0);
+		opacity: 0.5;
 		transition: 0.3s;
 		z-index: 10;
 	}
 	.navLink:hover {
 		cursor: pointer;
-		color: rgba(0, 0, 0, 1);
+		opacity: 1;
 	}
 	.navLink.active {
-		color: rgba(0, 0, 0, 1);
+		color: rgba(0, 0, 0);
+		opacity: 1;
 	}
 	.burgerMenu {
 		height: 55px;
