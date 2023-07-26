@@ -5,7 +5,7 @@ description: Designed and built a full-stack blog for the Iowa State University 
 date: 2/23/23
 link: https://www.trendmagisu.com/
 type: detailed
-image: /trendmag.png
+image: /trendmag.webp
 ---
 # Figma Design
 ![Mockup](/trend_mockup.png)

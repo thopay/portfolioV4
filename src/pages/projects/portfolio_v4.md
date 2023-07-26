@@ -5,7 +5,7 @@ description: Designed and developed an Astro blog site to display my past works,
 date: 5/26/23
 link: https://thopay.dev/
 type: detailed
-image: /portfolio.png
+image: /portfolio.webp
 ---
 Find my blog post covering the process of making my latest portfolio [here](/blog)
 ## Figma Design

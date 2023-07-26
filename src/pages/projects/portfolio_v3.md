@@ -5,7 +5,7 @@ description: Designed and developed a React blog site using Figma to display my 
 date: 6/25/22
 link: https://thopay.dev/
 type: detailed
-image: /portfolio_v3_card.png
+image: /portfolio_v3_card.webp
 ---
 ## Figma Design
 ![Mockup](/portfolio_v3.png)
