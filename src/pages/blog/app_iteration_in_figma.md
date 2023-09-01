@@ -17,7 +17,9 @@ Here was our first iteration within Figma.
 	<img src="/cyclesync/3.png" style="flex: 1; max-width: 25%; height: auto;"></img>
 	<img src="/cyclesync/4.png" style="flex: 1; max-width: 25%; height: auto;"></img>
 </div>
+
 ---
+
 We felt this design was a good starting point, but was still a little outdated.
 
 # Second Iteration
