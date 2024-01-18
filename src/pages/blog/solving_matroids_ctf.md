@@ -45,7 +45,7 @@ function nice(e) {
 ```
 
 This tells you that it's the "wrong direction" however just to be sure I started looking into zone.bind which, as explained by GPT-4-1106-preview, is the following
-	A BIND zone file is a text file that defines the mappings between domain names and IP addresses for a specific zone within the Domain Name System (DNS). BIND stands for Berkeley Internet Name Domain, which is the most commonly used DNS software on the Internet and is the de facto standard on Unix-like operating systems. The files are used by BIND to resolve domain names to IP addresses and to direct traffic to the appropriate servers for a particular domain.
+> A BIND zone file is a text file that defines the mappings between domain names and IP addresses for a specific zone within the Domain Name System (DNS). BIND stands for Berkeley Internet Name Domain, which is the most commonly used DNS software on the Internet and is the de facto standard on Unix-like operating systems. The files are used by BIND to resolve domain names to IP addresses and to direct traffic to the appropriate servers for a particular domain.
 
 Using my knowledge from my cybersecurity courses, I decided to run a `dig` command on the domain https://notepad-24.mtrd.in/ and also https://notepad-24.mtrd.in/sunflower to see if anything interesting popped up.
 
@@ -246,7 +246,7 @@ Hooray, another link! Upon visiting this I was greeted with a simple HTML page w
 
 ### Step 6 - Nix
 Of course, I went ahead and downloaded this file. Thing first thing I did was ask GPT-4 what a `.drv` file was, to which I was given this information:
-	You have obtained a `.drv` file, which is a Nix derivation. Nix derivations are a core concept of the Nix package manager which is used in NixOS and for cross-platform package management. Derivations specify how to build a package from source, including all of its dependencies and build steps. The `.drv` file you received contains a recipe for building a specific package.
+> You have obtained a `.drv` file, which is a Nix derivation. Nix derivations are a core concept of the Nix package manager which is used in NixOS and for cross-platform package management. Derivations specify how to build a package from source, including all of its dependencies and build steps. The `.drv` file you received contains a recipe for building a specific package.
 
 In addition to this, GPT-4 recommended I inspect the `.drv` file in an editor and explained how I should look at inputs, outputs, and build steps. After looking into this, I noticed there's a `buildPhase` containing the following instructions:
 ```
