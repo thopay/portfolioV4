@@ -5,6 +5,7 @@ import { Icon } from 'astro-icon';
 const {frontmatter} = Astro.props;
 ---
 <Layout title={frontmatter.title} description={frontmatter.description}>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.css" integrity="sha384-WsHMgfkABRyG494OmuiNmkAOk8nhO1qE+Y6wns6v+EoNoTNxrWxYpl5ZYWFOLPCM" crossorigin="anonymous">
 	<Nav page="blogPost"/>
 	<div class="blogSection">
 		<h1 class="blogTitle">{frontmatter.title}</h1>
