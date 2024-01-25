@@ -113,3 +113,12 @@ Proof by contradiction:
 **Definition**: $\Omega(g(n)) = \{  f(n)\ |\ \text{There exists positive}\ c, n_{c}\ \text{such that\ } o\leq cg(n) \leq f(n)\ ∀n \geq n_{0}$
 - Provides the **tightest** bound (asymptotic behavior → like $==$)
 
+****
+
+I must admit, these notes, although relatively comprehensive, have room for improvement. So far, I've found the study of Big O, Big Theta, and Big Omega challenging primarily when understood via proofs. However, I'm not one to back down from a challenge. 
+
+My plan is to revisit and add to these notes as my understanding of the subject continues to grow. This is a journey, and I believe in the power of constant learning and improvement. Sharing these notes publicly isn't just about providing a resource to others; it's also about motivating myself. 
+
+By putting my notes out there, I'm compelled to take better, more deliberate notes during class. It's a commitment to myself to strive for clarity in understanding and precision in note-taking. I hope that my journey will inspire you in some way and lead to shared growth. 
+
+Stay tuned for more posts in the "From The Vault" series!
