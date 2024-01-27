@@ -101,6 +101,87 @@ Proof by contradiction:
 
 <br />
 
+## Review of log
+- If $n=a^x$, then $x=\log_{a}n$
+- $\log(a^{b})=b\log(a)$
+- $\log (a*b)=\log(a)+\log(b)$
+- $\log\left( \frac{a}{b} \right)=\log(a*b^{-1})=\log(a)+\log(b^{-1})=\log(a)-\log(b)$
+- $2^{\log_{2}(n)}=n$
+- $a^{\log_{b}(n)}=n^{\log_{b}(a)}$
+- $\log_{b}(x)=\frac{\log_{a}(x)}{\log_{a}(b)}$
+
+<br />
+
+
+### Formal Derivation of Runtime
+
+**Expectation**: Express runtime in Big-O notation
+
+**Example 1**
+```java
+for (i = 1; i <= n; i++) {
+	print(i)
+}
+```
+Goal: Derive runtime of this loop as a function of $n$
+Analysis:
+- For each iteration: how many primitive operations are done?
+- There's a comparison (`i <= n`), print, and increment → all of these are constant runtime
+- Let $c$ be the number of primitive operations being done in one iteration
+- During each iteration, $c$ primitive operations are done
+
+
+| i   | # Primitive Operations |
+| --- | ---------------------- |
+| 1   | c                      |
+| 2   | c                      |
+| 3   | c                      |
+| ... | ...                    |
+
+- This sums to $c+c+\dots +c$ or $n$ times
+- Therefore, the total number of primitive operations is $\sum_{i=1}^{n}c=c*n=O(n)$
+- Thus, the runtime of this algorithm is $O(n)$
+
+<br />
+
+**Example 2**
+```java
+for (i = 1; i <= n; i++) {
+	for (j = 1; j <= n; j++) {
+		// constant # of primitive operations
+	}
+}
+```
+Analysis:
+- Start with innermost loop → Each iteration consists of a constant number of primitive operations, say $c_{1}$ operations, from previous example we know that the number of primitive operations is $\sum_{j=1}^nc_{1}=O(n)$
+- For a single iteration of the outer loop, the number of primitive operations is the inner loop sum + comparison operations + increment etc.
+- Call the comparison and increment operations for the outer loop $c_{2}$
+- Total runtime is $\sum_{i=1}^n\left((( \sum_{j=1}^nc_{1})+c_{2} \right)$ → $\sum_{i+1}^{n}(c_{1 }n+c_{2})=\sum_{i=1}^{n}c_{1}n +\sum_{i=1}^nc_{2}=c_{1}n^{2}+c_{2}n$
+- With a polynomial runtime, we clear lower order terms and remove constants, therefore the runtime is $O(n^{2})$
+
+<br />
+
+**Example 3**
+```java
+for (i = 1; i <= n; i++) {
+	for (j=1; j <= i; j++) {
+		// constant # of primitive operations
+	}
+}
+```
+Analysis:
+- Start with the innermost loop → Each iteration consists of a constant number of primitive operations, say $c_{1}$ operations
+- However, in this case, the inner loop doesn't run $n$ times every iteration of the outer loop.
+- Instead, it runs $i$ times. Therefore, for each iteration $i$ of the outer loop, the number of primitive operations the inner loop does is $\sum_{j=1}^{i}c_{1}$.
+- Now, we can sum this over all $n$ iterations of the outer loop to get the total number of primitive operations: $\sum_{i=1}^{n}(\sum_{j=1}^{i}c_{1} + c_{2})$ , where $c_2$ is the constant runtime from the comparison and increment operations of the outer loop.
+- From this, we can rewrite the sum as: $c_{1}(\sum_{i=1}^{n}i)+nc_{2}$ → since $\sum_{i=1}^{n}i=\frac{1}{2}n(n+1)$.
+- Simplifying, we find this to be $c_{1} \frac{n(n+1)}{2} + c_{2}n$.
+- In big-O notation, we ignore lower order terms and constants, therefore the runtime is $O(n^{2})$. 
+
+This highlights an important point: a loop running $n$ times nested within another loop running $n$ times does not always result in a runtime of $O(n^2)$. In this case the inner loop only runs $i$ times for the $i$th iteration of the outer loop. The analysis still results in $O(n^2)$, but the actual number of operations is less than the previous example where both loops ran $n$ times.
+
+<br />
+
 # Big-Theta
 **Definition**: For a given function $g(n)$, we denote by $\theta(g(n))$ the set of functions $\theta(g(n)) = \{  f(n)\ |\ \text{There exists positive}\ c_{1}, c_{2}, n_{0}\ \text{such that\ } ∀n \geq n_{0}, o\leq c_{1}g(n) \leq f(n) \leq c_{2}g(n) \}$
 - $\theta$ "sandwiches" the function f(n) between $c_{1}g(n)$ and $c_{2}g(n)$
