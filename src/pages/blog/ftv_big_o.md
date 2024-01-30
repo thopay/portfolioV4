@@ -19,7 +19,21 @@ Today, we're delving into the world of computational complexity, specifically fo
 
 # Big-O
 
-**Definition**: If there exist positive constants $c$ and $n_{0}$ such that $∀n \geq n_{0}, f(n) \leq c*g(n)$ then $f ∈ O(g(n))$
+- We need a notion of algorithm efficiency
+- Big-O checks worst-case performance counted in atomic computer instructions/steps
+- It is a function of how many data items we processed (number of elements in an array of size n)
+- When we say Big-O of an algorithm is O(n), this means we did ~1000 computer steps to process 1000 elements
+- When we say Big-O is O(n^2), the computer MUST go through ~1,000,000 steps to process 1000 elements
+
+**Very basic approach of how to compute Big-O**
+
+1. Find worst-case scenario that requires the algorithm to perform the most work in number of steps
+2. We count the steps, assuming our input is an array of size n elements (this is labeled T(n) - the actual abstract number of steps)
+3. O(n) is produced by taking T(n) and removing all constants and non-significant terms (only the first and most significant term matters)
+
+<br />
+
+**Mathematical Definition**: If there exist positive constants $c$ and $n_{0}$ such that $∀n \geq n_{0}, f(n) \leq c*g(n)$ then $f ∈ O(g(n))$
 - Provides asymptotic upper bound (like $\leq$)
 
 <br />
