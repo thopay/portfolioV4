@@ -5,9 +5,11 @@ description: Kick-starting the "From The Vault" series, this post shares lecture
 date: 1/25/24
 icon: mdi:omega
 ---
-Welcome to the first post in a new series I'm starting, "From The Vault". In this series, I'll be sharing some of the notes, thoughts, and insights I've recorded over the course of my studies in Software Engineering at Iowa State and beyond. These notes come directly from my personal vault (my Obsidian vault).
+Welcome to the first post in a new series I'm starting, "From The Vault". In this series, I'll be sharing some of the notes, thoughts, and insights I've recorded over the course of my studies in Software Engineering at Iowa State and beyond. These notes come from my personal vault (my Obsidian vault).
 
 Today, we're delving into the world of computational complexity, specifically focusing on Big O, Big Theta, and Big Omega. They are fundamental concepts in the study of algorithm efficiency and performance, and they were covered during my COM S 311 class at Iowa State University.
+
+*Note: While these notes are based on content directly from my vault, they have be parsed and re-organized prior to sharing to make more sense within a blog post.*
 
 ****
 
