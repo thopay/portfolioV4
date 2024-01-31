@@ -63,11 +63,11 @@ Big-Theta provides a **tight bound**, showing that a function grows **precisely*
 
 ## Simplifying with Examples
 
-**Big O**: If $f(n) =3n + 2$, we simplify this to $O(n)$, disregarding constants and lower order terms.
+**Big-O**: If $f(n) =3n + 2$, we simplify this to $O(n)$, disregarding constants and lower order terms.
   
-**Big Omega**: For $f(n) = n^2 + 3n$, we can say it's $\Omega(n^2)$, suggesting it grows at least as fast as $n^2$.
+**Big-Omega**: For $f(n) = n^2 + 3n$, we can say it's $\Omega(n^2)$, suggesting it grows at least as fast as $n^2$.
 
-**Big Theta**: If we have $f(n) = 2n^2 + 3n + 1$, it simplifies to $\Theta(n^2)$, indicating it grows exactly as $n^2$ for large values of $n$.
+**Big-Theta**: If we have $f(n) = 2n^2 + 3n + 1$, it simplifies to $\Theta(n^2)$, indicating it grows exactly as $n^2$ for large values of $n$.
 
 
 <br />
