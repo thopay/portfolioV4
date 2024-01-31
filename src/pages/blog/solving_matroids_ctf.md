@@ -9,6 +9,8 @@ Here's a little breakdown of how I solved the challenge/CTF Matroid hosted for t
 
 *Note: At the time of this post, the initial Base64 data that decoded to link to the project was removed from the job application, but the website still remains hosted.*
 
+Update as of 1/26/24: Rejected from Matroid 😔
+
 # Step 1 - Base64 Decoding
 The first step is to have an idea of what you're looking at when applying to the job. On the job application, at the very bottom was a header and sub header inviting the applicant to try to solve the CTF (I honestly can't remember exactly what it said, but it was something like that) and some Base64 data, respectively. With this, I simply copied the data, pasted it here (https://www.base64decode.org/), and decoded it. This decoded to the link where the CTF begins here: https://notepad-24.mtrd.in/.
 
