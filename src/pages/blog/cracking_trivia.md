@@ -13,7 +13,7 @@ icon: ph:egg-crack-fill
 
 [TapTap Live](https://taptap.live/), a mobile app for iOS, hosts live trivia games reminiscent of the app HQ. Players aim to correctly answer a series of 12 trivia questions to win a share of the daily pot, typically amounting to $250. As a Software Engineering student, I saw this app not just as entertainment but as a perfect opportunity to apply and challenge my software engineering skills. This blog post details my journey to automate the trivia answer process, featuring the final product demo and the evolutionary steps of my solution. Here's the most recent final product in action:
 
-![Demo](/trivia/demo.gif)
+![Demo](/trivia/demo2.gif)
 
 Now let me explain how I got here...
 
@@ -89,6 +89,11 @@ This approach proved to be effective, with the addition of the specific querying
 With these 2 approaches alone, I already had a script that would consistently give me accurate answers. The first solution of using OCR + Turbo-4 proved to be super fast and effective when the picture doesn't matter, and the Gemini Vision + Turbo-4 proved to be extremely accurate in any case, however, it was much slower, typically around 7 seconds. So waiting for its response would typically be cutting it pretty close. For the time being though, I was happy with those solutions and decided to keep them both in the script. With both functions written, I could easily call both in different threads and have them run simultaneously. However, I wasn't satisfied, I wanted to find the Goldilocks solution. The best balance of speed and accuracy.
 
 After consulting with other people about ideas (s/o Sami), I decided to try reverse image searching the picture. This would be much faster than Gemini Pro Vision since reverse image search doesn't really analyze the image but rather tries to match it and provide relevant search results. After tinkering with Google search and writing methods to send the image to Google, I was able to consistently get an array of strings made up of the results from the reverse image search. With this, I would use the first approach and pass the question, answer, Google search context, and reverse image search context to GPT-4-Turbo. This proved to work just about as well as the Gemini Pro Vision (more testing still needs to be done). With that, I had my ideal solution (for the time being).
+
+Once again, here's a demo of the final working version:
+
+![Demo](/trivia/demo2.gif)
+
 
 ****
 
