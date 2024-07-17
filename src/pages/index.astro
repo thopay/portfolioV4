@@ -10,7 +10,7 @@ import Button from '../components/Button.astro';
 ---
 
 <Layout title="Thomas - Software Engineer">
-	<div class="landing">
+	<div class="landing" id="landing">
 		<Nav page="index"/>
 		<div class="masthead">
 			<h1 class="primaryText">Hi, I'm Thomas!</h1>
@@ -26,6 +26,19 @@ import Button from '../components/Button.astro';
 	<EducationSection />
 	<SkillsExperienceSection />
 	<SocialsSection />
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			const landing = document.getElementById("landing");
+			const highResImage = new Image();
+			highResImage.src = "/mountain_old.png";
+			highResImage.onload = function() {
+				if (landing) {
+					landing.style.backgroundImage = `url(${highResImage.src})`;
+				}
+			};
+		});
+	</script>
 </Layout>
 
 <style>
