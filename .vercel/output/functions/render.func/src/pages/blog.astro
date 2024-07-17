@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import BlogCard from '../components/BlogCard.astro';
+const allPosts = await Astro.glob('./blog/*.md');
+---
+
+<Layout title="Thomas - Blog">
+	<Nav page="blog"/>
+	<div class="blogSection" id="blog">
+		<div class="blogPostsContainer">
+			{
+				allPosts.sort(
+					(a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf()
+				).map((post) => {
+					return (<BlogCard title={post.frontmatter.title} description={post.frontmatter.description} link={post.url} />)
+				}
+				)
+			}
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.blogSection {
+		background-color: #1B2023;
+		min-height: 100vh;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		padding: 2em;
+		overflow: hidden;
+	}
+	.blogPostsContainer {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		margin-bottom: 25px;
+	}
+	.sectionHeader {
+		color: #fff;
+		font-size: 32px;
+		font-family: 'Poppins';
+		font-weight: 600;
+	}
+</style>

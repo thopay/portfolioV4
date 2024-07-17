@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import BlogSection from '../components/BlogSection.astro';
+import ProjectsSection from '../components/ProjectsSection.astro';
+import EducationSection from '../components/EducationSection.astro';
+import SkillsExperienceSection from '../components/SkillsExperienceSection.astro';
+import SocialsSection from '../components/SocialsSection.astro';
+import Button from '../components/Button.astro';
+---
+
+<Layout title="Thomas - Full Stack Dev">
+	<div class="landing">
+		<Nav page="index"/>
+		<div class="masthead">
+			<h1 class="primaryText">Hi, I'm Thomas!</h1>
+			<p class="secondaryText">I'm a full stack developer currently attending Iowa State University.</p>
+			<div class="buttonContainer">
+				<Button type={'primary'} text="View My Blog" href="/blog" />
+				<Button type={'secondary'} text="View My Resume" href="/resume.pdf" />
+			</div>
+		</div>
+	</div>
+	<BlogSection />
+	<ProjectsSection />
+	<EducationSection />
+	<SkillsExperienceSection />
+	<SocialsSection />
+</Layout>
+
+<style>
+	.landing {
+		height: 100vh;
+		width: 100%;
+		background-image: url('/mountain.webp');
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	.masthead {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		width: 100%;
+		height: stretch;
+		position: absolute;
+	}
+	.primaryText {
+		font-family: 'Poppins';
+		font-weight: 700;
+		font-size: 48px;
+		color: #fff;
+		text-align: center;
+	}
+	.secondaryText {
+		font-family: 'Poppins';
+		font-weight: 300;
+		font-size: 20px;
+		color: #fff;
+		margin-bottom: 70px;
+		text-align: center;
+	}
+	.buttonContainer {
+		display: grid;
+		grid-auto-flow: column;
+		column-gap: 50px;
+	}
+	/* make .buttonContainer display rows if mobile */
+	@media (max-width: 874px) {
+		.buttonContainer {
+			grid-auto-flow: row;
+			row-gap: 20px;
+		}
+	}
+</style>
