@@ -31,25 +31,17 @@ import { Icon } from 'astro-icon';
 	</div>
 	<div class="right" id="experience">
 		<h1 class="sectionHeader">Experience</h1>
+        <div class="experienceGroup">
+            <img alt="Splunk" src="/Splunk.png" class="experienceBrand"/>
+            <h2 class="experienceTitle">Splunk - Software Engineer Intern - Summer 2024</h2>
+        </div>
 		<div class="experienceGroup">
 			<img alt="John Deere" src="/John_Deere.png" class="experienceBrand"/>
 			<h2 class="experienceTitle">John Deere - Software Engineering Intern - Summer 2023</h2>
-			<div class="experienceIcons">
-				<Icon pack="simple-icons" name="typescript" class="experienceIcon johnDeere" />
-				<Icon pack="cib" name="java" class="experienceIcon johnDeere" />
-				<Icon pack="cib" name="spring" class="experienceIcon johnDeere" />
-				<Icon pack="fa-brands" name="react" class="experienceIcon johnDeere" />
-			</div>
 		</div>
 		<div class="experienceGroup">
 			<img alt="PeachPay, Inc." src="/PeachPay.webp" class="experienceBrand"/>
 			<h2 class="experienceTitle">PeachPay - Software Engineering Intern - Summer 2022</h2>
-			<div class="experienceIcons">
-				<Icon pack="simple-icons" name="typescript" class="experienceIcon peachPay" />
-				<Icon pack="simple-icons" name="php" class="experienceIcon peachPay" />
-				<Icon pack="file-icons" name="vue" class="experienceIcon peachPay" />
-				<Icon pack="icomoon-free" name="html-five" class="experienceIcon peachPay" />
-			</div>
 		</div>
 	</div>
 </div>
@@ -134,22 +126,6 @@ import { Icon } from 'astro-icon';
 	}
 	.resumeButton {
 		margin-top: 1em;
-	}
-	.experienceIcons {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-	.experienceIcon {
-		height: 48px;
-		margin-left: 5px;
-		margin: 0px 25px;
-	}
-	.johnDeere {
-		color: #38831A;
-	}
-	.peachPay {
-		color: #F98574;
 	}
 	.experienceTitle {
 		font-family: 'Poppins';
