@@ -9,7 +9,7 @@ const sorted = allPosts.sort(
 
 <Layout title="Thomas — Blog">
     <Nav page="blog" />
-    <main>
+    <main transition:name="page-content">
         <div class="container">
 <ul class="posts">
                 {sorted.map(post => (

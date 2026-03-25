@@ -43,6 +43,34 @@ const canonicalURL = new URL(Astro.url.pathname, "https://thopay.dev");
     </head>
     <body>
         <slot />
+        <script>
+            const isBlogPost = (p) => p.startsWith('/blog/') && p !== '/blog/';
+            const isBlogList = (p) => p === '/blog' || p === '/blog/';
+            const isHome     = (p) => p === '/' || p === '';
+
+            document.addEventListener('astro:before-preparation', (e) => {
+                const from = e.from?.pathname ?? '';
+                const to   = e.to?.pathname   ?? '';
+
+                if (isBlogList(from) && isBlogPost(to)) {
+                    document.documentElement.dataset.transition = 'forward';
+                } else if (isBlogPost(from) && isBlogList(to)) {
+                    document.documentElement.dataset.transition = 'backward';
+                } else if (isHome(from) && !isHome(to)) {
+                    document.documentElement.dataset.transition = 'home-exit';
+                } else if (!isHome(to) && isHome(to)) {
+                    document.documentElement.dataset.transition = 'home-enter';
+                } else if (!isHome(from) && isHome(to)) {
+                    document.documentElement.dataset.transition = 'home-enter';
+                } else {
+                    document.documentElement.dataset.transition = 'default';
+                }
+            });
+
+            document.addEventListener('astro:page-load', () => {
+                delete document.documentElement.dataset.transition;
+            });
+        </script>
     </body>
 </html>
 <style is:global>
@@ -82,19 +110,103 @@ const canonicalURL = new URL(Astro.url.pathname, "https://thopay.dev");
         font-display: swap;
     }
 
-    /* View transition animation — clean fade */
+    /* ── Keyframes ─────────────────────────────────── */
     @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(6px); }
-        to   { opacity: 1; transform: translateY(0); }
+        from { opacity: 0; }
+        to   { opacity: 1; }
     }
     @keyframes fadeOut {
-        from { opacity: 1; transform: translateY(0); }
-        to   { opacity: 0; transform: translateY(-6px); }
+        from { opacity: 1; }
+        to   { opacity: 0; }
     }
-    ::view-transition-old(root) {
+    @keyframes slideOutLeft {
+        from { transform: translateX(0);    opacity: 1; }
+        to   { transform: translateX(-32px); opacity: 0; }
+    }
+    @keyframes slideInRight {
+        from { transform: translateX(32px); opacity: 0; }
+        to   { transform: translateX(0);    opacity: 1; }
+    }
+    @keyframes slideOutRight {
+        from { transform: translateX(0);    opacity: 1; }
+        to   { transform: translateX(32px); opacity: 0; }
+    }
+    @keyframes slideInLeft {
+        from { transform: translateX(-32px); opacity: 0; }
+        to   { transform: translateX(0);     opacity: 1; }
+    }
+    @keyframes slideNavDown {
+        from { transform: translateY(-100%); opacity: 0; }
+        to   { transform: translateY(0);     opacity: 1; }
+    }
+    @keyframes slideNavUp {
+        from { transform: translateY(0);     opacity: 1; }
+        to   { transform: translateY(-100%); opacity: 0; }
+    }
+
+    /* ── Default: fade for anything unspecified ────── */
+    ::view-transition-old(root) { animation: fadeOut 0.15s ease forwards; }
+    ::view-transition-new(root) { animation: fadeIn  0.2s  ease forwards; }
+
+    /* Prevent double-blend on named elements */
+    ::view-transition-old(nav),
+    ::view-transition-new(nav),
+    ::view-transition-old(page-content),
+    ::view-transition-new(page-content) {
+        mix-blend-mode: normal;
+    }
+
+    /* ── Forward: blog list → blog post ────────────── */
+    html[data-transition="forward"]::view-transition-old(root),
+    html[data-transition="forward"]::view-transition-new(root) {
+        animation: none;
+    }
+    html[data-transition="forward"]::view-transition-old(nav),
+    html[data-transition="forward"]::view-transition-new(nav) {
+        animation: none;
+    }
+    html[data-transition="forward"]::view-transition-old(page-content) {
+        animation: slideOutLeft  0.22s ease forwards;
+    }
+    html[data-transition="forward"]::view-transition-new(page-content) {
+        animation: slideInRight  0.22s ease forwards;
+    }
+
+    /* ── Backward: blog post → blog list ───────────── */
+    html[data-transition="backward"]::view-transition-old(root),
+    html[data-transition="backward"]::view-transition-new(root) {
+        animation: none;
+    }
+    html[data-transition="backward"]::view-transition-old(nav),
+    html[data-transition="backward"]::view-transition-new(nav) {
+        animation: none;
+    }
+    html[data-transition="backward"]::view-transition-old(page-content) {
+        animation: slideOutRight 0.22s ease forwards;
+    }
+    html[data-transition="backward"]::view-transition-new(page-content) {
+        animation: slideInLeft   0.22s ease forwards;
+    }
+
+    /* ── Home exit: home → any page (nav slides down) ── */
+    html[data-transition="home-exit"]::view-transition-new(nav) {
+        animation: slideNavDown 0.25s ease forwards;
+    }
+    html[data-transition="home-exit"]::view-transition-old(root) {
         animation: fadeOut 0.15s ease forwards;
     }
-    ::view-transition-new(root) {
-        animation: fadeIn 0.2s ease forwards;
+    html[data-transition="home-exit"]::view-transition-new(root) {
+        animation: fadeIn  0.2s  ease forwards;
+    }
+
+    /* ── Home enter: any page → home (nav slides up) ─── */
+    html[data-transition="home-enter"]::view-transition-old(nav) {
+        animation: slideNavUp 0.25s ease forwards;
+    }
+    html[data-transition="home-enter"]::view-transition-old(root) {
+        animation: fadeOut 0.15s ease forwards;
+    }
+    html[data-transition="home-enter"]::view-transition-new(root) {
+        animation: fadeIn  0.2s  ease forwards;
     }
 </style>

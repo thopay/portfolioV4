@@ -4,7 +4,7 @@ export interface Props {
 }
 const { page } = Astro.props;
 ---
-<nav>
+<nav transition:name="nav">
     <div class="links">
         <a href="/" class={page === 'index' ? 'active' : ''}>Home</a>
         <a href="/blog" class={page === 'blog' || page === 'blogPost' ? 'active' : ''}>Blog</a>
