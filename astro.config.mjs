@@ -1,22 +1,17 @@
 import { defineConfig } from 'astro/config';
-import vercel from "@astrojs/vercel/serverless";
-import tailwind from "@astrojs/tailwind";
+import vercel from "@astrojs/vercel";
+import sitemap from "@astrojs/sitemap";
 
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 
-// https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind()],
+  site: "https://thopay.dev",
+  integrations: [sitemap()],
   output: 'server',
-  adapter: vercel({
-    analytics: true
-  }),
-  experimental: {
-    assets: true
-   },
-   markdown: {
-		remarkPlugins: [remarkMath],
-		rehypePlugins: [rehypeKatex]
-	}
+  adapter: vercel(),
+  markdown: {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex]
+  }
 });

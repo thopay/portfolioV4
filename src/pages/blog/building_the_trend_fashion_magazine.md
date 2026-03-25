@@ -2,7 +2,7 @@
 layout: ../../layouts/BlogPostLayout.astro
 title: Building the Iowa State TREND Fashion Magazine Website
 description: Dive into the nitty-gritty of how I conceptualized, designed, and implemented the TREND Magazine website at Iowa State University. Explore the tech stack used, challenges encountered, and how the project shaped my software engineering skills.
-date: 7/13/23
+date: July 13, 2023
 icon: ic:baseline-construction
 ---
 # A Journey from Idea to Implementation

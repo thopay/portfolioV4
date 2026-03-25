@@ -2,7 +2,7 @@
 layout: ../../layouts/BlogPostLayout.astro
 title: Solving Matroid's Intern CTF
 description: A step-by-step breakdown of how I solved the challenge
-date: 1/18/24
+date: January 18, 2024
 icon: bi:flag
 ---
 Here's a little breakdown of how I solved the challenge/CTF Matroid hosted for their Software Engineering Intern position. 

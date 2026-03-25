@@ -1,295 +1,188 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
-import { Icon } from 'astro-icon';
 const {frontmatter} = Astro.props;
 ---
-<Layout title={frontmatter.title} description={frontmatter.description} image={"https://thopay.dev"+frontmatter.image}>
-	<Nav page="project"/>
-	<div class="projectSection">
-		<h1 class="projectTitle">{frontmatter.title}</h1>
-		<div class="navigation">
-			<div class="back">
-				<a href="/projects" class="backButton"><Icon pack="ri" name="arrow-left-line" class="backIcon"/>Back</a>
-			</div>
-			<a href={frontmatter.link}><h2 class="projectLink">View Here</h2></a>
-			<div class="postDateContainer">
-				<p class="postDate">{frontmatter.date}</p>
-			</div>
-		</div>
-		<div class="projectContent">
-			<slot />
-		</div>
-	</div>
-	</div>
+<Layout title={frontmatter.title} description={frontmatter.description} image={"https://thopay.dev" + frontmatter.image}>
+    <Nav page="project"/>
+    <main>
+        <article>
+            <header>
+                <a href="/projects" class="back">← All projects</a>
+                <h1>{frontmatter.title}</h1>
+                <div class="meta">
+                    <time>{frontmatter.date}</time>
+                    {frontmatter.link && (
+                        <a href={frontmatter.link} target="_blank" rel="noopener" class="ext-link">View Project ↗</a>
+                    )}
+                </div>
+            </header>
+            <div class="content">
+                <slot />
+            </div>
+        </article>
+    </main>
 </Layout>
 
 <style>
-	.projectSection {
-		background-color: #fff;
-		min-height: 100vh;
-		width: 100%;
-		display: flex;
-		align-items: center;
-		flex-direction: column;
-		padding: 4em 2em;
-		overflow: hidden;
-	}
-	.projectTitle {
-		color: #000;
-		text-align: center;
-		font-family: Poppins;
-		font-size: 32px;
-		font-style: normal;
-		font-weight: 600;
-		line-height: normal;
-		margin-bottom: 1em;
-	}
-	.projectLink {
-		color: #FFC107;
-		text-align: center;
-		font-family: Poppins;
-		font-size: 24px;
-		font-style: normal;
-		font-weight: 600;
-		line-height: normal;
-		margin-bottom: 1em;
-	}
-	.projectContent {
-		margin-top: 2em;
-		width: 100%;
-		max-width: 800px;
-	}
-	:global(.projectContent h1) {
-		font-family: Poppins;
-		font-size: 32px;
-		font-style: normal;
-		font-weight: 600;
-		line-height: normal;
-		margin-bottom: 1em;
-		color: black;
-	}
-	:global(.projectContent h2) {
-		font-family: Poppins;
-		font-size: 24px;
-		font-style: normal;
-		font-weight: 600;
-		line-height: normal;
-		margin-bottom: 1em;
-		color: black;
-	}
-	:global(.projectContent h3) {
-		font-family: Poppins;
-		font-size: 20px;
-		font-style: normal;
-		font-weight: 600;
-		line-height: normal;
-		margin-bottom: 1em;
-		color: black;
-	}
-	:global(.projectContent h4) {
-		font-family: Poppins;
-		font-size: 18px;
-		font-style: normal;
-		font-weight: 600;
-		line-height: normal;
-		margin-bottom: 1em;
-		color: black;
-	}
-	:global(.projectContent h5) {
-		font-family: Poppins;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 600;
-		line-height: normal;
-		margin-bottom: 1em;
-		color: black;
-	}
-	:global(.projectContent h6) {
-		font-family: Poppins;
-		font-size: 14px;
-		font-style: normal;
-		font-weight: 600;
-		line-height: normal;
-		margin-bottom: 1em;
-		color: black;
-	}
-	:global(.projectContent p) {
-		font-family: Poppins;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 300;
-		line-height: normal;
-		margin-bottom: 1em;
-		color: black;
-	}
-	:global(.projectContent a) {
-		color: #FFC107;
-	}
-	:global(.projectContent a:hover) {
-		color: #FFC107;
-		text-decoration: underline;
-	}
-	:global(.projectContent ul) {
-		font-family: Poppins;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: normal;
-		margin-bottom: 1em;
-		color: black;
-	}
-	:global(.projectContent ol) {
-		font-family: Poppins;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: normal;
-		margin-bottom: 1em;
-		color: black;
-		counter-reset: item;
-	}
-	:global(.projectContent ol li) {
-		counter-increment: item;
-	}
-	:global(.projectContent ol li)::before {
-		content: counter(item) ". ";
-	}
-	:global(.projectContent ul li)::before {
-		content: "• ";
-	}
-	:global(.projectContent li) {
-		font-family: Poppins;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: normal;
-		margin-bottom: 1em;
-		color: black;
-	}
+    main {
+        padding: 3rem 2rem;
+    }
+    article {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    header {
+        margin-bottom: 3rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--border);
+    }
+    .back {
+        display: inline-block;
+        font-size: 0.875rem;
+        color: var(--fg-muted);
+        margin-bottom: 1.5rem;
+        transition: color 0.15s;
+    }
+    .back:hover {
+        color: var(--fg);
+    }
+    h1 {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+        margin: 0 0 0.75rem;
+    }
+    .meta {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    time {
+        font-size: 0.875rem;
+        color: var(--fg-muted);
+    }
+    .ext-link {
+        font-size: 0.875rem;
+        color: var(--fg-muted);
+        transition: color 0.15s;
+    }
+    .ext-link:hover {
+        color: var(--fg);
+    }
 
-	:global(.projectContent blockquote) {
-		font-family: Poppins;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: normal;
-		margin-bottom: 1em;
-		color: black;
-		border-left: 4px solid #FFC107;
-		padding-left: 1em;
-	}
-	:global(.projectContent pre) {
-		font-family: 'Fira Code', monospace;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: normal;
-		color: black;
-		padding: 1em;
-		border-radius: 4px;
-		margin: 1em 0.25em;
-	}
-	:global(.projectContent hr) {
-		border: 1px solid #FFC107;
-		margin: 2em 0;
-		margin-left: 5%;
-		margin-right: 5%;
-	}
-	:global(.projectContent img) {
-		width: 100%;
-		max-width: 800px;
-		margin: 1em 0;
-		padding: 1em;
-	}
-	:global(.projectContent table) {
-		width: 100%;
-		max-width: 800px;
-		margin: 1em 0;
-	}
-	:global(.projectContent table th) {
-		font-family: Poppins;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 600;
-		line-height: normal;
-		color: black;
-		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-	}
-	:global(.projectContent table td) {
-		font-family: Poppins;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 300;
-		line-height: normal;
-		color: black;
-		padding: 0.5em 0.25em;
-	}
-	:global(.projectContent table tr) {
-		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-	}
-	:global(.projectContent table tr:last-child) {
-		border-bottom: none;
-	}
-	:global(.projectContent table tr:nth-child(2n)) {
-		background-color: rgba(0, 0, 0, 0.1);
-	}
-	:global(.projectContent table tr:nth-child(2n+1)) {
-		background-color: rgba(0, 0, 0, 0.05);
-	}
-	:global(.projectContent table tr:hover) {
-		background-color: rgba(0, 0, 0, 0.2);
-	}
-	:global(.projectContent table tr:hover td) {
-		color: black;
-	}
-	:global(.projectContent table tr:hover th) {
-		color: black;
-	}
-	.navigation {
-		display: flex;
-		width: 100%;
-		max-width: 800px;
-		justify-content: space-between;
-	}
-	.back {
-		display: flex;
-		align-items: center;
-		color: rgba(0, 0, 0, 0.5);
-		transition: all 0.2s ease-in-out;
-	}
-	.back:hover {
-		color: rgba(0, 0, 0, 1);
-	}
-	.backButton {
-		font-family: Poppins;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: normal;
-		display: flex;
-		align-items: center;
-		flex-direction: row;
-	}
-	.backIcon {
-		height: 32px;
-		margin-right: 0.5em;
-	}
-	.projectIcon {
-		height: 100px;
-		color: black;
-	}
-	.postDateContainer {
-		display: flex;
-		align-items: center;
-	}
-	.postDate {
-		color: rgba(0, 0, 0, 0.5);
-		font-family: Poppins;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: normal;
-		margin-left: 1em;
-	}
+    /* Markdown content */
+    :global(.content h1),
+    :global(.content h2),
+    :global(.content h3),
+    :global(.content h4),
+    :global(.content h5),
+    :global(.content h6) {
+        color: var(--fg);
+        font-weight: 600;
+        line-height: 1.3;
+        margin: 2em 0 0.75em;
+        letter-spacing: -0.01em;
+    }
+    :global(.content h1) { font-size: 1.625rem; }
+    :global(.content h2) { font-size: 1.25rem; }
+    :global(.content h3) { font-size: 1.0625rem; }
+    :global(.content h4),
+    :global(.content h5),
+    :global(.content h6) { font-size: 1rem; }
+
+    :global(.content p) {
+        color: var(--fg);
+        font-size: 1rem;
+        line-height: 1.75;
+        font-weight: 300;
+        margin: 0 0 1.25em;
+    }
+    :global(.content a) {
+        color: var(--fg);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        text-decoration-color: var(--border);
+        transition: text-decoration-color 0.15s;
+    }
+    :global(.content a:hover) {
+        text-decoration-color: var(--fg);
+    }
+    :global(.content ul),
+    :global(.content ol) {
+        color: var(--fg);
+        font-size: 1rem;
+        font-weight: 300;
+        line-height: 1.75;
+        margin: 0 0 1.25em;
+        padding-left: 1.5em;
+    }
+    :global(.content li) {
+        margin-bottom: 0.4em;
+    }
+    :global(.content blockquote) {
+        border-left: 2px solid var(--fg-muted);
+        padding-left: 1.25em;
+        margin: 1.5em 0;
+        color: var(--fg-muted);
+        font-style: italic;
+    }
+    :global(.content pre) {
+        background: transparent;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 1em 1.25em;
+        overflow-x: auto;
+        font-size: 0.875rem;
+        line-height: 1.6;
+        margin: 1.5em 0;
+    }
+    :global(.content code) {
+        font-size: 0.875em;
+        font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', ui-monospace, monospace;
+    }
+    :global(.content p code),
+    :global(.content li code) {
+        background: var(--border);
+        padding: 0.15em 0.4em;
+        border-radius: 3px;
+    }
+    :global(.content strong) {
+        font-weight: 600;
+    }
+    :global(.content hr) {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 2.5em 0;
+    }
+    :global(.content img) {
+        width: 100%;
+        height: auto;
+        margin: 1.5em 0;
+        border-radius: 4px;
+        display: block;
+    }
+    :global(.content table) {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+        margin: 1.5em 0;
+    }
+    :global(.content table th) {
+        color: var(--fg);
+        font-weight: 600;
+        text-align: left;
+        padding: 0.5em 0.75em;
+        border-bottom: 1px solid var(--border);
+    }
+    :global(.content table td) {
+        color: var(--fg);
+        font-weight: 300;
+        padding: 0.5em 0.75em;
+        border-bottom: 1px solid var(--border);
+    }
+    :global(.content table tr:last-child td) {
+        border-bottom: none;
+    }
 </style>

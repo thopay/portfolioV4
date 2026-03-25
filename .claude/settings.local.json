@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree -L 3 -I 'node_modules' /c/Users/ogtan/Documents/Projects/portfoliov4 2>/dev/null || find /c/Users/ogtan/Documents/Projects/portfoliov4 -not -path '*/node_modules/*' -type d | head -30)",
+      "Bash(for f:*)",
+      "Bash(do echo:*)",
+      "Read(//c/Users/ogtan/Documents/Projects/portfoliov4/**)",
+      "Bash(done)",
+      "Bash(npx astro:*)",
+      "Bash(npm show:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)"
+    ]
+  }
+}

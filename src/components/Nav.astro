@@ -1,269 +1,39 @@
 ---
-import { Icon } from 'astro-icon';
 export interface Props {
-	page: string;
-	burgerColor?: string;
+    page?: string;
 }
-
-const { page, burgerColor = 'white' } = Astro.props;
+const { page } = Astro.props;
 ---
-<div class="bottomNav">
-	<div class="importantSocials">
-		<a href="mailto:me@thopay.dev"><div class="importantSocial"><Icon pack="ic" name="outline-email" class="socialIcon" />me@thopay.dev</div></a>
-		<a href="https://github.com/thopay"><div class="importantSocial"><Icon pack="ri" name="github-line" class="socialIcon" />thopay</div></a>
-		<a href="https://linkedin.com/in/thopay"><div class="importantSocial"><Icon pack="uil" name="linkedin-alt" class="socialIcon linkedin" />thopay</div></a>
-	</div>
-	<div class="topNav">
-		<div class="navLink">Home</div>
-		<div class="navLink">Blog</div>
-		<div class="navLink">Projects</div>
-		<div class="navLink">Education</div>
-		<div class="navLink">Skills</div>
-		<div class="navLink">Experience</div>
-		<div class="navLink">Socials</div>
-	</div>
-</div>
-<div class="burgerMenu">
-	<Icon pack="ri" name="menu-line" class="burgerMenuIcon"/>
-</div>
-<div class="sideNav">
-	<div class="closeButton">
-		<Icon pack="ic" name="baseline-close" class="burgerMenuClose"/>
-	</div>
-	<div class="sideNavLinks">
-		<div class="sideNavLink">Home</div>
-		<div class="sideNavLink">Blog</div>
-		<div class="sideNavLink">Projects</div>
-		<div class="sideNavLink">Education</div>
-		<div class="sideNavLink">Skills</div>
-		<div class="sideNavLink">Experience</div>
-		<div class="sideNavLink">Socials</div>
-	</div>
-	<script define:vars={{ page, burgerColor }}>
-		function smoothScrollTo(element) {
-			document.querySelector(element).scrollIntoView({
-				behavior: 'smooth',
-				block: 'start'
-			});
-		}
-		window.addEventListener('DOMContentLoaded', () => {
-			document.querySelector('.burgerMenuIcon').style.color = burgerColor;
-			const hash = window.location.hash
-			if (hash) {
-				smoothScrollTo(hash)
-			}
-			if (page === 'blog' || page === 'blogPost') {
-				document.querySelectorAll('.navLink')[1].classList.add('active');
-			}
-			if (page === 'projects' || page === 'project') {
-				document.querySelectorAll('.navLink')[2].classList.add('active');
-			}
-		});
-		const navLinks = document.querySelectorAll('.navLink');
-		navLinks.forEach(navLink => {
-			navLink.addEventListener('click', () => {
-				if (navLink.innerHTML.toLowerCase() === 'home' && page !== 'index') {
-					return window.location.href = '/';
-				}
-				if (navLink.innerHTML.toLowerCase() === 'blog' && page !== 'blog' && page !== 'index') {
-					return window.location.href = '/blog';
-				}
-				if (navLink.innerHTML.toLowerCase() === 'projects' && page !== 'projects' && page !== 'index') {
-					return window.location.href = '/projects';
-				}
-				if (navLink.innerHTML.toLowerCase() === 'blog' && page === 'blogPost') {
-					return window.location.href = '/blog';
-				}
-				if (navLink.innerHTML.toLowerCase() === 'projects' && page === 'project') {
-					return window.location.href = '/projects';
-				}
-				if (page === 'projects' && navLink.innerHTML.toLowerCase() !== 'projects') {
-					window.location.href = `/#${navLink.innerHTML.toLowerCase()}`;
-				}
-				if (page === 'blog' && navLink.innerHTML.toLowerCase() !== 'blog') {
-						window.location.href = `/#${navLink.innerHTML.toLowerCase()}`;
-				}
-				smoothScrollTo(`#${navLink.innerHTML.toLowerCase()}`);
-			});
-		});
-		const sideNavLinks = document.querySelectorAll('.sideNavLink');
-		sideNavLinks.forEach(sideNavLink => {
-			sideNavLink.addEventListener('click', () => {
-				document.querySelector('.sideNav').classList.remove('open');
-				setTimeout(() => {
-					if (sideNavLink.innerHTML.toLowerCase() === 'home') {
-						return window.location.href = '/';
-					}
-					if (page !== 'index' && sideNavLink.innerHTML.toLowerCase() !== 'blog') {
-						window.location.href = `/#${sideNavLink.innerHTML.toLowerCase()}`;
-					}
-					smoothScrollTo(`#${sideNavLink.innerHTML.toLowerCase()}`);
-				}, 300);
-			});
-		});
-		const closeButton = document.querySelector('.closeButton');
-		closeButton.addEventListener('click', () => {
-			document.querySelector('.sideNav').classList.remove('open');
-		});
-		const burgerMenu = document.querySelector('.burgerMenu');
-		burgerMenu.addEventListener('click', () => {
-			document.querySelector('.sideNav').classList.add('open');
-		});
-
-	</script>
-</div>
-<style define:vars={{ burgerColor }}>
-	.bottomNav {
-		width: 100%;
-		height: 130px;
-		background-color: #F6B5C1;
-		display: flex;
-		justify-content: center;
-		position: relative;
-	}
-	.topNav {
-		width: 874px;
-		height: 55px;
-		background-color: #FDFDFC;
-		position: absolute;
-		bottom: -35px;
-		border-radius: 5px;
-		padding: 10px;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-	@media (max-width: 874px) {
-		.topNav {
-			display: none;
-		}
-		.bottomNav {
-			display: none;
-		}
-	}
-	.importantSocials {
-		width: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-	@media (max-width: 874px) {
-		.importantSocials {
-			flex-direction: row;
-		}
-	}
-	.importantSocial {
-		margin: 0 30px;
-		font-family: 'Poppins';
-		font-weight: 500;
-		font-size: 16px;
-		display: flex;
-		align-items: center;
-	}
-	.importantSocials a {
-		transition: 0.3s;
-	}
-	.importantSocials a:hover {
-		scale: 1.05;
-	}
-	.socialIcon {
-		height: 24px;
-		margin-right: 10px;
-	}
-	.linkedin {
-		margin-top: -7px;
-	}
-	.navLink {
-		padding: 0 30px;
-		font-family: 'Poppins';
-		font-weight: 600;
-		font-size: 16px;
-		color: rgba(0, 0, 0);
-		opacity: 0.5;
-		transition: 0.3s;
-		z-index: 10;
-	}
-	.navLink:hover {
-		cursor: pointer;
-		opacity: 1;
-	}
-	.navLink.active {
-		color: rgba(0, 0, 0);
-		opacity: 1;
-	}
-	.burgerMenu {
-		height: 55px;
-		width: 100%;
-		display: flex;
-		justify-content: right;
-		align-items: center;
-		padding-right: 20px;
-		padding-top: 18px;
-		position: absolute;
-		z-index: 10;
-	}
-	.burgerMenuIcon {
-		height: 32px;
-	}
-	@media (min-width: 874px) {
-		.burgerMenu {
-			display: none;
-		}
-	}
-	.sideNav {
-		width: 100vw;
-		overflow: hidden;
-		height: 100%;
-		background-color: white;
-		position: fixed;
-		top: 0;
-		left: 0;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		z-index: 100;
-		transform: translateX(100%);
-		transition: transform 0.3s ease-in-out;
-	}
-	.sideNav.open {
-		transform: translateX(0%);
-	}
-	.sideNavLinks {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
-	.sideNavLink {
-		padding: 20px 0;
-		font-family: 'Poppins';
-		font-weight: 600;
-		font-size: 24px;
-		color: black;
-		transition: 0.3s;
-	}
-	.sideNavLink:hover {
-		cursor: pointer;
-		color: rgba(0, 0, 0, 1);
-	}
-	@media (min-width: 874px) {
-		.sideNav {
-			display: none;
-		}
-	}
-	.burgerMenuClose {
-		height: 32px;
-		color: black;
-	}
-	.closeButton {
-		position: absolute;
-		top: 20px;
-		right: 20px;
-	}
-	@media (min-width: 874px) {
-		.closeButton {
-			display: none;
-		}
-	}
+<nav>
+    <div class="links">
+        <a href="/" class={page === 'index' ? 'active' : ''}>Home</a>
+        <a href="/blog" class={page === 'blog' || page === 'blogPost' ? 'active' : ''}>Blog</a>
+        <a href="/resume.pdf" target="_blank" rel="noopener">Resume</a>
+    </div>
+</nav>
+<style>
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.25rem 2rem;
+        border-bottom: 1px solid var(--border);
+    }
+    .links {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+    .links a {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--fg);
+        border-bottom: 1px solid transparent;
+        padding-bottom: 2px;
+        transition: border-color 0.15s;
+    }
+    .links a:hover,
+    .links a.active {
+        border-color: var(--fg);
+    }
 </style>

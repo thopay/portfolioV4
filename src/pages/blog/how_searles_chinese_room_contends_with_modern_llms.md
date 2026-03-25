@@ -2,7 +2,7 @@
 layout: ../../layouts/BlogPostLayout.astro
 title: How Searle’s Chinese Room Contends with Modern LLMs
 description: An exploration of how John Searle’s Chinese Room argument contends with the capabilities of today’s LLMs, and whether advances in AI undermine his critique of machine understanding.
-date: 4/28/25
+date: April 28, 2025
 icon: mdi:brain
 ---
 *This essay was originally submitted as the final assessment for ARTS2115: Philosophy of Artificial Intelligence at UNSW in 2025. The assignment prompted us to engage with a major philosophical issue in AI, here I examine how John Searle’s famous Chinese Room argument stands up against the realities of today’s Large Language Models (LLMs), such as GPT-4 and Claude.*

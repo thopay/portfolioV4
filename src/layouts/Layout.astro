@@ -1,10 +1,10 @@
 ---
-import "@fontsource/poppins/200.css";
 import "@fontsource/poppins/300.css";
 import "@fontsource/poppins/400.css";
 import "@fontsource/poppins/500.css";
 import "@fontsource/poppins/600.css";
-import "@fontsource/poppins/700.css";
+import { ViewTransitions } from "astro:transitions";
+
 export interface Props {
     title: string;
     description?: string;
@@ -13,28 +13,33 @@ export interface Props {
 
 const {
     title,
-    description = "Thomas is a software engineer currently attending Iowa State University.",
+    description = "Thomas is a software engineer at Splunk with a focus on frontend development.",
     image = "https://thopay.dev/thomas.jpg",
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, "https://thopay.dev");
 ---
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="description" content={description} />
-        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" type="image/ico" href="/favicon.ico" />
-        <meta name="generator" content={Astro.generator} />
+        <link rel="canonical" href={canonicalURL} />
+        <meta name="description" content={description} />
+        <meta name="robots" content="index, follow" />
         <title>{title}</title>
+        <meta property="og:type" content="website" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={image} />
-        <meta property="og:url" content="https://thopay.dev/" />
+        <meta property="og:url" content={canonicalURL} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} />
+        <ViewTransitions />
     </head>
     <body>
         <slot />
@@ -42,20 +47,54 @@ const {
 </html>
 <style is:global>
     :root {
-        --accent: 124, 58, 237;
-        --accent-gradient: linear-gradient(
-            45deg,
-            rgb(var(--accent)),
-            #da62c4 30%,
-            white 60%
-        );
+        --bg: #ffffff;
+        --fg: #111111;
+        --fg-muted: rgba(0, 0, 0, 0.45);
+        --border: rgba(0, 0, 0, 0.12);
+    }
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg: #0d0d0d;
+            --fg: #efefef;
+            --fg-muted: rgba(255, 255, 255, 0.65);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+    }
+    *, *::before, *::after {
+        box-sizing: border-box;
     }
     html {
-        font-family: "Poppins";
-        background-color: #000;
+        font-family: "Poppins", system-ui, sans-serif;
+        background-color: var(--bg);
+        color: var(--fg);
+        -webkit-font-smoothing: antialiased;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    a {
+        color: inherit;
+        text-decoration: none;
     }
     @font-face {
         font-family: "Poppins";
-        font-display: var(--fontsource-display, swap);
+        font-display: swap;
+    }
+
+    /* View transition animation — clean fade */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(6px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeOut {
+        from { opacity: 1; transform: translateY(0); }
+        to   { opacity: 0; transform: translateY(-6px); }
+    }
+    ::view-transition-old(root) {
+        animation: fadeOut 0.15s ease forwards;
+    }
+    ::view-transition-new(root) {
+        animation: fadeIn 0.2s ease forwards;
     }
 </style>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://thopay.dev/sitemap-index.xml

@@ -1,290 +1,185 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
-import { Icon } from 'astro-icon';
 const {frontmatter} = Astro.props;
 ---
 <Layout title={frontmatter.title} description={frontmatter.description}>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.css" integrity="sha384-WsHMgfkABRyG494OmuiNmkAOk8nhO1qE+Y6wns6v+EoNoTNxrWxYpl5ZYWFOLPCM" crossorigin="anonymous">
-	<Nav page="blogPost"/>
-	<div class="blogSection">
-		<h1 class="blogTitle">{frontmatter.title}</h1>
-		<div class="navigation">
-			<div class="back">
-				<a href="/blog" class="backButton"><Icon pack="ri" name="arrow-left-line" class="backIcon"/>Back</a>
-			</div>
-			<Icon pack={frontmatter.icon.split(':')[0]} name={frontmatter.icon.split(':')[1]} class="blogIcon"/>
-			<div class="postDateContainer">
-				<p class="postDate">{frontmatter.date}</p>
-			</div>
-		</div>
-		<div class="blogContent">
-			<slot />
-		</div>
-	</div>
-	</div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.css" integrity="sha384-WsHMgfkABRyG494OmuiNmkAOk8nhO1qE+Y6wns6v+EoNoTNxrWxYpl5ZYWFOLPCM" crossorigin="anonymous">
+    <Nav page="blogPost"/>
+    <main>
+        <article>
+            <header>
+                <a href="/blog" class="back">← All posts</a>
+                <h1>{frontmatter.title}</h1>
+                <time>{frontmatter.date}</time>
+            </header>
+            <div class="content">
+                <slot />
+            </div>
+        </article>
+    </main>
 </Layout>
 
 <style>
-	.blogSection {
-		background-color: #1B2023;
-		min-height: 100vh;
-		width: 100%;
-		display: flex;
-		align-items: center;
-		flex-direction: column;
-		padding: 4em 2em;
-		overflow: hidden;
-	}
-	:global(strong) {
-		font-weight: bold !important;
-	}
-	.blogTitle {
-		color: #FFF;
-		text-align: center;
-		font-family: Poppins;
-		font-size: 32px;
-		font-style: normal;
-		font-weight: 600;
-		line-height: normal;
-		margin-bottom: 1em;
-	}
-	.blogContent {
-		margin-top: 2em;
-		width: 100%;
-		max-width: 800px;
-	}
-	:global(.blogContent h1) {
-		font-family: Poppins;
-		font-size: 32px;
-		font-style: normal;
-		font-weight: 600;
-		line-height: normal;
-		margin-bottom: 1em;
-		color: white;
-	}
-	:global(.blogContent h2) {
-		font-family: Poppins;
-		font-size: 24px;
-		font-style: normal;
-		font-weight: 600;
-		line-height: normal;
-		margin-bottom: 1em;
-		color: white;
-	}
-	:global(.blogContent h3) {
-		font-family: Poppins;
-		font-size: 20px;
-		font-style: normal;
-		font-weight: 600;
-		line-height: normal;
-		margin-bottom: 1em;
-		color: white;
-	}
-	:global(.blogContent h4) {
-		font-family: Poppins;
-		font-size: 18px;
-		font-style: normal;
-		font-weight: 600;
-		line-height: normal;
-		margin-bottom: 1em;
-		color: white;
-	}
-	:global(.blogContent h5) {
-		font-family: Poppins;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 600;
-		line-height: normal;
-		margin-bottom: 1em;
-		color: white;
-	}
-	:global(.blogContent h6) {
-		font-family: Poppins;
-		font-size: 14px;
-		font-style: normal;
-		font-weight: 600;
-		line-height: normal;
-		margin-bottom: 1em;
-		color: white;
-	}
-	:global(.blogContent p) {
-		font-family: Poppins;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 300;
-		line-height: normal;
-		margin-bottom: 1em;
-		color: white;
-	}
-	:global(.blogContent a) {
-		color: #FFC107;
-	}
-	:global(.blogContent a:hover) {
-		color: #FFC107;
-		text-decoration: underline;
-	}
-	:global(.blogContent ul) {
-		font-family: Poppins;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: normal;
-		margin-bottom: 1em;
-		color: white;
-	}
-	:global(.blogContent ol) {
-		font-family: Poppins;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: normal;
-		margin-bottom: 1em;
-		color: white;
-		counter-reset: item;
-	}
-	:global(.blogContent ol li) {
-		counter-increment: item;
-	}
-	:global(.blogContent ol li)::before {
-		content: counter(item) ". ";
-	}
-	:global(.blogContent ul li)::before {
-		content: "• ";
-	}
-	:global(.blogContent li) {
-		font-family: Poppins;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: normal;
-		margin-bottom: 1em;
-		color: white;
-	}
+    main {
+        padding: 3rem 2rem;
+    }
+    article {
+        max-width: 640px;
+        margin: 0 auto;
+    }
+    header {
+        margin-bottom: 3rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--border);
+    }
+    .back {
+        display: inline-block;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--fg);
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 2px;
+        margin-bottom: 1.5rem;
+        transition: border-color 0.15s;
+    }
+    .back:hover {
+        border-color: var(--fg);
+    }
+    h1 {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+        margin: 0 0 0.75rem;
+    }
+    time {
+        font-size: 0.875rem;
+        color: var(--fg-muted);
+    }
 
-	:global(.blogContent blockquote) {
-		font-family: Poppins;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: normal;
-		margin-bottom: 1em;
-		color: white;
-		border-left: 4px solid #FFC107;
-		padding-left: 1em;
-	}
-	:global(.blogContent pre) {
-		font-family: 'Fira Code', monospace;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: normal;
-		color: white;
-		padding: 1em;
-		border-radius: 4px;
-		margin: 1em 0.25em;
-	}
-	:global(.blogContent hr) {
-		border: 1px solid #FFC107;
-		margin: 2em 0;
-		margin-left: 5%;
-		margin-right: 5%;
-	}
-	:global(.blogContent img) {
-		width: 100%;
-		max-width: 800px;
-		margin: 1em 0;
-		padding: 1em;
-	}
-	:global(.blogContent table) {
-		width: 100%;
-		max-width: 800px;
-		margin: 1em 0;
-	}
-	:global(.blogContent table th) {
-		font-family: Poppins;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 600;
-		line-height: normal;
-		color: white;
-		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-	}
-	:global(.blogContent table td) {
-		text-align: center;
-		font-family: Poppins;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 300;
-		line-height: normal;
-		color: white;
-		padding: 0.5em 0.25em;
-	}
-	:global(.blogContent table tr) {
-		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-	}
-	:global(.blogContent table tr:last-child) {
-		border-bottom: none;
-	}
-	:global(.blogContent table tr:nth-child(2n)) {
-		background-color: rgba(255, 255, 255, 0.1);
-	}
-	:global(.blogContent table tr:nth-child(2n+1)) {
-		background-color: rgba(255, 255, 255, 0.05);
-	}
-	:global(.blogContent table tr:hover) {
-		background-color: rgba(255, 255, 255, 0.2);
-	}
-	:global(.blogContent table tr:hover td) {
-		color: white;
-	}
-	:global(.blogContent table tr:hover th) {
-		color: white;
-	}
-	.navigation {
-		display: flex;
-		width: 100%;
-		max-width: 800px;
-		justify-content: space-between;
-	}
-	.back {
-		display: flex;
-		align-items: center;
-		color: rgba(255, 255, 255, 0.5);
-		transition: all 0.2s ease-in-out;
-	}
-	.back:hover {
-		color: rgba(255, 255, 255, 1);
-	}
-	.backButton {
-		font-family: Poppins;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: normal;
-		display: flex;
-		align-items: center;
-		flex-direction: row;
-	}
-	.backIcon {
-		height: 32px;
-		margin-right: 0.5em;
-	}
-	.blogIcon {
-		height: 100px;
-		color: white;
-	}
-	.postDateContainer {
-		display: flex;
-		align-items: center;
-	}
-	.postDate {
-		color: rgba(255, 255, 255, 0.5);
-		font-family: Poppins;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: normal;
-		margin-left: 1em;
-	}
+    /* Markdown content styles */
+    :global(.content h1),
+    :global(.content h2),
+    :global(.content h3),
+    :global(.content h4),
+    :global(.content h5),
+    :global(.content h6) {
+        color: var(--fg);
+        font-weight: 600;
+        line-height: 1.3;
+        margin: 2.25em 0 0.75em;
+        letter-spacing: -0.01em;
+    }
+    :global(.content > :first-child) {
+        margin-top: 0;
+    }
+    :global(.content h1) { font-size: 1.625rem; }
+    :global(.content h2) { font-size: 1.25rem; }
+    :global(.content h3) { font-size: 1.0625rem; }
+    :global(.content h4),
+    :global(.content h5),
+    :global(.content h6) { font-size: 1rem; }
+
+    :global(.content p) {
+        color: var(--fg);
+        font-size: 1rem;
+        line-height: 1.8;
+        font-weight: 300;
+        margin: 0 0 1.5em;
+    }
+
+    /* References / footnote section */
+    :global(.content h3:last-of-type ~ p),
+    :global(.content h4:last-of-type ~ p) {
+        font-size: 0.875rem;
+        color: var(--fg-muted);
+        line-height: 1.6;
+    }
+    :global(.content a) {
+        color: var(--fg);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        text-decoration-color: var(--border);
+        transition: text-decoration-color 0.15s;
+    }
+    :global(.content a:hover) {
+        text-decoration-color: var(--fg);
+    }
+    :global(.content ul),
+    :global(.content ol) {
+        color: var(--fg);
+        font-size: 1rem;
+        font-weight: 300;
+        line-height: 1.75;
+        margin: 0 0 1.25em;
+        padding-left: 1.5em;
+    }
+    :global(.content li) {
+        margin-bottom: 0.4em;
+    }
+    :global(.content blockquote) {
+        border-left: 2px solid var(--fg-muted);
+        padding-left: 1.25em;
+        margin: 1.5em 0;
+        color: var(--fg-muted);
+        font-style: italic;
+    }
+    :global(.content pre) {
+        background: transparent;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 1em 1.25em;
+        overflow-x: auto;
+        font-size: 0.875rem;
+        line-height: 1.6;
+        margin: 1.5em 0;
+    }
+    :global(.content code) {
+        font-size: 0.875em;
+        font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', ui-monospace, monospace;
+    }
+    :global(.content p code),
+    :global(.content li code) {
+        background: var(--border);
+        padding: 0.15em 0.4em;
+        border-radius: 3px;
+    }
+    :global(.content strong) {
+        font-weight: 600;
+    }
+    :global(.content hr) {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 2.5em 0;
+    }
+    :global(.content img) {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        margin: 1.5em 0;
+        border-radius: 4px;
+    }
+    :global(.content table) {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+        margin: 1.5em 0;
+    }
+    :global(.content table th) {
+        color: var(--fg);
+        font-weight: 600;
+        text-align: left;
+        padding: 0.5em 0.75em;
+        border-bottom: 1px solid var(--border);
+    }
+    :global(.content table td) {
+        color: var(--fg);
+        font-weight: 300;
+        padding: 0.5em 0.75em;
+        border-bottom: 1px solid var(--border);
+    }
+    :global(.content table tr:last-child td) {
+        border-bottom: none;
+    }
 </style>

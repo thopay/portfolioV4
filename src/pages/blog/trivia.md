@@ -2,7 +2,7 @@
 layout: ../../layouts/BlogPostLayout.astro
 title: "Cracking Trivia: A Software Engineer's Approach to TapTap Live"
 description: Dive into the journey of a software engineering student who tackled the challenge of automating trivia answers on TapTap Live. Explore the naive approach, the hurdles of real-time answers, and the innovative solutions involving OCR, GPT-4, and Google's Gemini Vision.
-date: 2/13/24
+date: February 13, 2024
 icon: ph:egg-crack-fill
 ---
 **Disclaimer**: This exploration was conducted solely for educational purposes on screen recordings of the app and was **not** deployed during live games.

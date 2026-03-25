@@ -2,7 +2,7 @@
 layout: ../../layouts/BlogPostLayout.astro
 title: Iterating App Design In Figma
 description: Follow along as I develop the design for an Uber-esque bike sharing app.
-date: 8/31/23
+date: August 31, 2023
 icon: tabler:bike
 ---
 # Starting Out: Journey into App Development
