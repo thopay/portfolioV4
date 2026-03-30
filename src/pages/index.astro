@@ -1,16 +1,30 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
+import Projects from '../components/Projects.astro';
 ---
 
 <Layout title="Thomas — Software Engineer" description="Thomas is a software engineer at Splunk focused on frontend development. Iowa State University, B.S. Software Engineering, 2025.">
+    <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Thomas",
+        "url": "https://thopay.dev",
+        "image": "https://thopay.dev/thomas.jpg",
+        "jobTitle": "Software Engineer",
+        "worksFor": { "@type": "Organization", "name": "Splunk" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Iowa State University" },
+        "sameAs": [
+            "https://github.com/thopay",
+            "https://linkedin.com/in/thopay"
+        ]
+    })} />
 <main>
         <section class="hero">
             <div class="hero-inner">
                 <p class="bio">
                     Hi, I'm <span class="name">Thomas</span>. I'm a software engineer at Splunk with a focus on frontend development.
                     I graduated from Iowa State University in 2025 with a degree in Software Engineering.
-                    Outside of work, I'm usually reading, traveling, or at a music festival.
                 </p>
                 <div class="links">
                     <a href="/blog">Blog</a>
@@ -19,8 +33,9 @@ import Nav from '../components/Nav.astro';
                     <a href="mailto:me@thopay.dev">Email</a>
                     <a href="/resume.pdf" target="_blank" rel="noopener">Resume</a>
                 </div>
-
+                    
                 <div class="timeline-section">
+                    <span class="section-label">Experience</span>
                     <div class="timeline">
 
                         <div class="timeline-item current">
@@ -95,6 +110,8 @@ import Nav from '../components/Nav.astro';
 
                     </div>
                 </div>
+
+                <Projects />
             </div>
         </section>
     </main>
@@ -106,6 +123,15 @@ import Nav from '../components/Nav.astro';
         flex-direction: column;
         min-height: 100vh;
     }
+    .section-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    margin-bottom: 1.25rem;
+}
     .hero {
         flex: 1;
         display: flex;
@@ -115,7 +141,7 @@ import Nav from '../components/Nav.astro';
         text-align: center;
     }
     .hero-inner {
-        max-width: 600px;
+        max-width: 625px;
         width: 100%;
     }
     .name {
@@ -129,7 +155,7 @@ import Nav from '../components/Nav.astro';
         color: var(--fg-muted);
         margin: 0 auto 2.5rem;
         font-weight: 300;
-        max-width: 600px;
+        max-width: 625px;
     }
     .links {
         display: flex;

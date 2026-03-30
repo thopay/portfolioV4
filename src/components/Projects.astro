@@ -1,0 +1,117 @@
+---
+const projects = [
+  {
+    name: "Shots",
+    date: "Aug 2023 – Mar 2024",
+    description: "iOS dating app with an anonymous \"shoot your shot\" comment system and a weekly reveal mechanic, prioritizing personality-driven connections over appearance-based matching.",
+    tags: ["Swift", "Go", "PostgreSQL", "AWS"],
+    link: "https://www.shots.dating",
+  },
+  {
+    name: "Live AI Trivia Solver",
+    date: "Feb 2024",
+    description: "Trivia automation tool for TapTap Live using OCR and AI models to answer real-time questions in ~3.5 seconds with 97% accuracy.",
+    tags: ["Python", "GPT-4", "Gemini Vision", "OpenCV"],
+    link: "https://thopay.dev/blog/trivia",
+  },
+  {
+    name: "TREND Magazine",
+    date: "Jan – May 2023",
+    description: "Full-stack website and CMS for Iowa State University's fashion magazine, designed in Figma and deployed to Vercel.",
+    tags: ["Next.js", "Strapi", "GraphQL", "Tailwind"],
+    link: "https://trendmagisu.com",
+  },
+];
+---
+
+<div class="projects-section">
+    <span class="section-label">Projects</span>
+  <div class="projects-list">
+    {projects.map(project => (
+      <div class="project-item">
+        <div class="project-header">
+          <span class="project-name">
+            <a href={project.link} target="_blank" rel="noopener">{project.name}</a>
+          </span>
+          <span class="project-date">{project.date}</span>
+        </div>
+        <p class="project-description">{project.description}</p>
+        <div class="project-tags">
+          {project.tags.map(tag => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .projects-section {
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .section-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    margin-bottom: 1.25rem;
+    text-align: left;
+}
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.625rem;
+  }
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.2rem;
+  }
+  .project-name {
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+  .project-name a {
+    color: var(--fg);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1px;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .project-name a:hover {
+    border-color: var(--fg);
+  }
+  .project-date {
+    font-size: 0.8125rem;
+    color: var(--fg-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .project-description {
+    font-size: 0.875rem;
+    color: var(--fg-muted);
+    font-weight: 300;
+    line-height: 1.6;
+    margin: 0 0 0.6rem;
+    text-align: left;
+  }
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+  }
+  .tag {
+    font-size: 0.75rem;
+    color: var(--fg-muted);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 0.1rem 0.425rem;
+  }
+</style>
