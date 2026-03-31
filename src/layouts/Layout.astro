@@ -13,7 +13,7 @@ export interface Props {
 
 const {
     title,
-    description = "Thomas is a software engineer at Splunk with a focus on frontend development.",
+    description = "Thomas Payton is a software engineer at Splunk with a focus on frontend development.",
     image = "https://thopay.dev/thomas.jpg",
 } = Astro.props;
 
@@ -29,12 +29,13 @@ const canonicalURL = new URL(Astro.url.pathname, "https://thopay.dev");
         <link rel="canonical" href={canonicalURL} />
         <meta name="description" content={description} />
         <meta name="robots" content="index, follow" />
-        <meta name="author" content="Thomas" />
+        <meta name="author" content="Thomas Payton" />
+        <meta name="keywords" content="Thomas Payton, software engineer, frontend developer, Splunk, Iowa State University" />
         <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#0d0d0d" media="(prefers-color-scheme: dark)" />
         <title>{title}</title>
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Thomas" />
+        <meta property="og:site_name" content="Thomas Payton" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={image} />
